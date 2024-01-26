@@ -6,14 +6,15 @@ import daniloImage from './danilo.png'
 import AlexandreImage from './imgs/AlexandreImage.png'
 import EndrilImage from './imgs/EndrilImage.png'
 import tesoura from './imgs/tesoura.png'
+import Calendar from './Calendar';
 
-// Componente para a escolha do barbeiro
+
 const ChooseBarber = ({ onNext }) => {
   const [selectedBarber, setSelectedBarber] = useState('');
 
   const handleBarberSelection = (barber) => {
     setSelectedBarber(barber);
-    onNext('service'); // Avança para a próxima etapa
+    onNext('service'); 
     console.log(barber)
   };
 
@@ -56,6 +57,11 @@ const ChooseService = ({ selectedBarber, onNext }) => {
         <li onClick={() => handleServiceSelection('Barba')}><BoxService profileImage={tesoura} name="Corte de cabelo" duracao="1 hora" preco="R$ 40,00" /></li>
         <li onClick={() => handleServiceSelection('Pacote Completo')}><BoxService profileImage={tesoura} name="Corte de cabelo" duracao="1 hora" preco="R$ 40,00" /></li>
       </ul>
+      <ul className="list-unstyled">
+        <li onClick={() => handleServiceSelection('Corte')}><BoxService profileImage={tesoura} name="Corte de cabelo" duracao="1 hora" preco="R$ 40,00" /></li>
+        <li onClick={() => handleServiceSelection('Barba')}><BoxService profileImage={tesoura} name="Corte de cabelo" duracao="1 hora" preco="R$ 40,00" /></li>
+        <li onClick={() => handleServiceSelection('Pacote Completo')}><BoxService profileImage={tesoura} name="Corte de cabelo" duracao="1 hora" preco="R$ 40,00" /></li>
+      </ul>
      
     </div>
   );
@@ -65,8 +71,11 @@ const ChooseService = ({ selectedBarber, onNext }) => {
 const ChooseLocation = ({ selectedBarber, selectedService }) => {
   return (
     <div>
-      <h2>Escolha o Local para {selectedBarber} - {selectedService}</h2>
-      {/* Adicione opções de escolha de local aqui */}
+      <ul>
+        <li>
+            <Calendar/>
+        </li>
+      </ul>
     </div>
   );
 };
