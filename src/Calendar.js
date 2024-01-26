@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-
+import './Calendar.css';
 const Calendar = () => {
-  const daysOfWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+  const daysOfWeek = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'];
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
-
+  const currentDate2 = new Date();
+  const currentDay2 = currentDate2.getUTCDate();
+  
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDay, setSelectedDay] = useState(currentDay2);
+
 
   const getCurrentMonthDays = () => {
     const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
@@ -25,14 +29,19 @@ const Calendar = () => {
   const handleDateClick = (day) => {
     const selectedDateObject = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
     setSelectedDate(selectedDateObject);
+    setSelectedDay(day);
   };
 
   const handlePrevMonth = () => {
+    if (currentDate>currentDate2) {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
+    setSelectedDay(null);
+}
   };
 
   const handleNextMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
+    setSelectedDay(null);
   };
 
   const renderDaysOfWeek = () => {
@@ -40,20 +49,26 @@ const Calendar = () => {
       <li key={index}>{day}</li>
     ));
   };
-
+  
   const renderDaysOfMonth = () => {
     const daysInMonth = getCurrentMonthDays();
-
-    return daysInMonth.map((day) => (
-      <li
-        key={day}
-        className={selectedDate && currentDate.getDate() === day ? 'active' : ''}
-        onClick={() => handleDateClick(day)}
-      >
-        {day}
-      </li>
-    ));
+  
+    return daysInMonth.map((day) => {
+      const currentDateObject = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+      const isPastDay = day < currentDay2;
+      
+      return (
+        <li
+          key={day}
+          className={`${selectedDay === day ? 'active' : ''} ${isPastDay ? 'disabled' : ''}`}
+          onClick={isPastDay ? null : () => handleDateClick(day)}
+        >
+          {day}
+        </li>
+      );
+    });
   };
+  
 
   return (
     <div>
