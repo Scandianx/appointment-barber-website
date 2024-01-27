@@ -4,7 +4,7 @@
 .info-box {
   padding: 20px;
   width: 500px;
-  height: 750px;
+  height: 780px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -13,19 +13,24 @@
   background: linear-gradient(to bottom right, #1e1e1e, #555, #1e1e1e);
   font-family: 'Bebas Neue', sans-serif;
   color: white;
-  margin: 20px auto;
+  margin: 0px auto;
   position: relative;
+  margin-top: 200px;
 }
 
 .textoBarber,
 .service-info {
   background-color: white;
   color: #1e1e1e;
+  
   width: calc(100% - 36px);
   height: 100px;
   position: absolute;
   left: 18px;
   border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  
 }
 
 .textoBarber {
@@ -33,7 +38,7 @@
 }
 
 .service-info {
-  top: 130px;
+  top: 120px;
 }
 
 .barber-info,
@@ -56,6 +61,7 @@
   margin-right: 20px;
   top: 10px;
   left: 10px;
+  position: absolute;
 }
 
 .serviceKind {
@@ -85,14 +91,14 @@
   max-width: 600px;
   margin-top: 20px;
   position: relative;
-  top: 200px;
+  top: 223px;
   left: 65px;
 }
 
 .calendar-info {
   margin-top: 20px;
   position: relative;
-  top: 450px;
+  top: 470px;
   white-space: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
@@ -143,7 +149,7 @@
   border-radius: 10px;
   cursor: pointer;
   position: relative;
-  top: 470px;
+  top: 490px;
   z-index: 1;
   font-family: 'Bebas Neue', sans-serif;
 }
