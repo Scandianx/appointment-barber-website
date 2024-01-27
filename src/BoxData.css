@@ -1,0 +1,149 @@
+/* BoxData.css */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.info-box {
+  padding: 20px;
+  width: 500px;
+  height: 750px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom right, #1e1e1e, #555, #1e1e1e);
+  font-family: 'Bebas Neue', sans-serif;
+  color: white;
+  margin: 20px auto;
+  position: relative;
+}
+
+.textoBarber,
+.service-info {
+  background-color: white;
+  color: #1e1e1e;
+  width: calc(100% - 36px);
+  height: 100px;
+  position: absolute;
+  left: 18px;
+  border-radius: 20px;
+}
+
+.textoBarber {
+  top: 0;
+}
+
+.service-info {
+  top: 130px;
+}
+
+.barber-info,
+.serviceKind,
+.serviceValue,
+.service-image {
+  position: absolute;
+}
+
+.barber-info {
+  top: 5px;
+  left: 125px;
+  font-size: 23px;
+}
+
+.barber-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 20px;
+  top: 10px;
+  left: 10px;
+}
+
+.serviceKind {
+  top: 12px;
+  left: 125px;
+  font-size: 20px;
+}
+
+.serviceValue {
+  top: 0px;
+  left: 400px;
+  font-size: 20px;
+}
+
+.service-image {
+  top: 10px;
+  left: 10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 20px;
+  z-index: 1;
+}
+
+.calendar {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+  position: relative;
+  top: 200px;
+  left: 65px;
+}
+
+.calendar-info {
+  margin-top: 20px;
+  position: relative;
+  top: 450px;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  z-index: 1;
+}
+
+.scroll-container {
+  
+  
+}
+
+.scrolling-wrapper {
+  display: flex;
+  padding: 10px;
+  
+}
+
+.schedule-item {
+  flex: 0 0 auto;
+  margin-right: 10px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+.calendar-info::-webkit-scrollbar {
+  width: 12px; /* Largura da barra de rolagem */
+}
+
+.calendar-info::-webkit-scrollbar-thumb {
+  background-color: #555; /* Cor do botão de rolagem */
+  border-radius: 10px; /* Borda arredondada do botão de rolagem */
+}
+
+.calendar-info::-webkit-scrollbar-track {
+  background-color: #1e1e1e; /* Cor de fundo da barra de rolagem */
+  border-radius: 10px;
+}
+.button {
+  background-color: white;
+  color: #1e1e1e;
+  padding: 10px 20px;
+  font-size: 19px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  top: 470px;
+  z-index: 1;
+  font-family: 'Bebas Neue', sans-serif;
+}

@@ -1,62 +1,95 @@
-* {box-sizing: border-box;}
-ul {list-style-type: none;}
+* {
+  box-sizing: border-box;
+}
+.calendarFull {
+  position: absolute;
+  
+}
 body {
-    font-family: Verdana, sans-serif;
-    margin-top: 300px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #222;
+  position: relative;
+  
+  
+  
 }
 
 /* Mês */
 .month {
-  padding: 70px 25px;
-  width: 100%;
-  background: white; /* Alterado para preto */
+  padding: 30px 10px; /* Ajuste o padding para reduzir o tamanho */
+  width: 335px; /* Largura fixa do calendário */
+  max-width: 400px; /* Defina uma largura máxima */
+  margin: 0 auto; /* Centraliza o calendário na página */
+  background: #333;
   text-align: center;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 0; /* ou qualquer valor desejado */
+  border-bottom-right-radius: 0;
 }
 
-/* Lista do mês */
 .month ul {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 .month ul li {
-  color:black;
-  font-size: 20px;
+  color: #fff;
+  font-size: 16px; /* Ajuste o tamanho da fonte */
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 }
 
-/* Botão anterior no cabeçalho do mês */
+.month .prev,
+.month .next {
+  display: inline-block;
+  cursor: pointer;
+  padding-top: 5px; /* Ajuste o padding conforme necessário */
+  color: #fff;
+}
+
 .month .prev {
   float: left;
-  padding-top: 10px;
 }
 
-/* Próximo botão */
 .month .next {
   float: right;
-  padding-top: 10px;
 }
 
 /* Dias da semana (Seg-Dom) */
 .weekdays {
   margin: 0;
-  padding: 10px 0;
-  background-color: #ddd;
+  padding: 5px 0; /* Ajuste o padding conforme necessário */
+  background-color: #444;
+  list-style: none;
 }
 
 .weekdays li {
   display: inline-block;
   width: 13.6%;
-  color: #666;
+  color: #bbb;
   text-align: center;
 }
 
 /* Dias (1-31) */
 .days {
-  padding: 10px 0;
-  background: #eee;
+  padding: 5px 0; /* Ajuste o padding conforme necessário */
+  background: #555;
   margin: 0;
+  list-style: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 30px; /* ou qualquer valor desejado */
+  border-bottom-right-radius: 30px;
+  width: 335px; /* Largura fixa do calendário */
+  height: 133px;
+  
 }
 
 .days li {
@@ -64,23 +97,27 @@ body {
   display: inline-block;
   width: 13.6%;
   text-align: center;
-  margin-bottom: 5px;
-  font-size: 12px;
-  color: #777;
+  margin-bottom: 3px; /* Ajuste a margem conforme necessário */
+  font-size: 16px; /* Ajuste a fonte conforme necessário */
+  color: #ddd;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 40px; /* Adiciona bordas arredondadas */
+  
 }
 
+.days li:hover {
+  
+  background: #000; /* Alterado para preto */
+  color: whitesmoke !important;
+}
 
+.days li.active {
+  background: #000; /* Alterado para preto */
+  color: whitesmoke !important;
+}
 
-.days :hover {
-    padding: 5px;
-    background: black; /* Alterado para preto */
-    color: black !important;
-  }
-  .active {
-    background: black; /* Alterado para preto */
-    color: black !important;
-  }
-  .disabled {
-    background: green; /* Alterado para preto */
-    color: green !important;
-  }
+.days li.disabled {
+  background: #555; /* Alterado para cinza escuro */
+  color: #777;
+}

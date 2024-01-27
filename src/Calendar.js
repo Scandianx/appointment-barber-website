@@ -3,14 +3,16 @@ import './Calendar.css';
 const Calendar = () => {
   const daysOfWeek = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'];
   const months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
+    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+];
+
   const currentDate2 = new Date();
   const currentDay2 = currentDate2.getUTCDate();
+  const currentMonth = currentDate2.getUTCMonth();
   
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(currentDate);
   const [selectedDay, setSelectedDay] = useState(currentDay2);
 
 
@@ -55,7 +57,7 @@ const Calendar = () => {
   
     return daysInMonth.map((day) => {
       const currentDateObject = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
-      const isPastDay = day < currentDay2;
+      const isPastDay = day < currentDay2 && currentDate.getUTCMonth() == currentMonth;
       
       return (
         <li
@@ -72,6 +74,7 @@ const Calendar = () => {
 
   return (
     <div>
+      <div className="calendarFull">
       <div className="month">
         <ul>
           <li className="prev" onClick={handlePrevMonth}>&#10094;</li>
@@ -87,8 +90,8 @@ const Calendar = () => {
       <ul className="days">
         {renderDaysOfMonth()}
       </ul>
-
-      <p>Selected Date: {selectedDate ? selectedDate.toDateString() : 'None'}</p>
+      </div>
+       
     </div>
   );
 };

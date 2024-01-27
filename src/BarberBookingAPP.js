@@ -7,11 +7,14 @@ import AlexandreImage from './imgs/AlexandreImage.png'
 import EndrilImage from './imgs/EndrilImage.png'
 import tesoura from './imgs/tesoura.png'
 import Calendar from './Calendar';
+import Modal from './Modal';
+import BoxData from './BoxData';
+import logo from './imgs/logo.png';
 
 
 const ChooseBarber = ({ onNext }) => {
   const [selectedBarber, setSelectedBarber] = useState('');
-
+  
   const handleBarberSelection = (barber) => {
     setSelectedBarber(barber);
     onNext('service'); 
@@ -34,9 +37,12 @@ const ChooseBarber = ({ onNext }) => {
 // Componente para a escolha do serviço
 const ChooseService = ({ selectedBarber, onNext }) => {
   const [selectedService, setSelectedService] = useState('');
+  const [modal, setModal] = useState(false);
 
   const handleServiceSelection = (service) => {
     setSelectedService(service);
+    
+    setModal(true)
     onNext('location');
     console.log(service)
   };
@@ -62,6 +68,13 @@ const ChooseService = ({ selectedBarber, onNext }) => {
         <li onClick={() => handleServiceSelection('Barba')}><BoxService profileImage={tesoura} name="Corte de cabelo" duracao="1 hora" preco="R$ 40,00" /></li>
         <li onClick={() => handleServiceSelection('Pacote Completo')}><BoxService profileImage={tesoura} name="Corte de cabelo" duracao="1 hora" preco="R$ 40,00" /></li>
       </ul>
+      <div>
+      
+      
+
+            
+        
+    </div>
      
     </div>
   );
@@ -71,11 +84,10 @@ const ChooseService = ({ selectedBarber, onNext }) => {
 const ChooseLocation = ({ selectedBarber, selectedService }) => {
   return (
     <div>
-      <ul>
-        <li>
-            <Calendar/>
-        </li>
-      </ul>
+      
+      <BoxData profileImage={daniloImage} barber={selectedBarber} service={selectedService} serviceImage={logo}/>
+            
+        
     </div>
   );
 };
@@ -83,6 +95,7 @@ const ChooseLocation = ({ selectedBarber, selectedService }) => {
 // Componente principal
 function BarberBookingApp () {
   const [currentStep, setCurrentStep] = useState('barber');
+  
 
   const handleNextStep = (nextStep) => {
     setCurrentStep(nextStep);
