@@ -11,6 +11,9 @@ import Modal from './Modal';
 import BoxData from './BoxData';
 import logo from './imgs/logo.png';
 import BoxLocation from './BoxLocation';
+import imageState from './imgs/image-removebg-preview (3).png'
+import imageState2 from './imgs/image-removebg-preview (2).png'
+import imageState3 from './imgs/image-removebg-preview (1).png'
 
 const ChooseLocation = ({ onNext, locatinChoosed }) => {
   const [selectedLocation, setSelectedLocation] = useState('');
@@ -24,13 +27,16 @@ const ChooseLocation = ({ onNext, locatinChoosed }) => {
 
   return (
     
-     <div>
+     <div className='location-css'>
+      <div className='img-location'><img src={imageState}></img></div>
+      <div className='boxs'>
       <ul className="list-unstyled">
         
      <li onClick={() => handleLocationSelection('1')}><BoxLocation profileImage={daniloImage} address="Danilo Ferreira" /></li>
      <li onClick={() => handleLocationSelection('2')}><BoxLocation profileImage={AlexandreImage} address="Endril" /></li>
      
    </ul>
+   </div>
    </div>
   );
 };
@@ -44,25 +50,28 @@ const ChooseBarber = ({ onNext, barberChoosed, selectedLocation }) => {
     
   };
   if (selectedLocation==='1') {return (
-    <div>
-      <h2>Escolha o Barbeiro</h2>
+    <div className='location-css2'>
+      <div className='img-location2'><img src={imageState2}></img></div>
+      <div className='boxs2'>
       <ul className="list-unstyled">
         <li onClick={() => handleBarberSelection('Danilo Ferreira')}><ModernBox profileImage={daniloImage} name="Danilo Ferreira" /></li>
         <li onClick={() => handleBarberSelection('Endril')}><ModernBox profileImage={AlexandreImage} name="Endril" /></li>
         <li onClick={() => handleBarberSelection('Alexandre Gonçalves')}><ModernBox profileImage={EndrilImage} name="Alexandre Gonçalves" /></li>
       </ul>
-      
+      </div>
     </div>
   );}
   else {
     return (
-      <div>
-      <h2>Escolha o Barbeiro</h2>
+      <div className='location-css2'>
+      <div className='img-location2'><img src={imageState2}></img></div>
+      <div className='boxs2'>
       <ul className="list-unstyled">
-        <li onClick={() => handleBarberSelection('Caio')}><ModernBox profileImage={daniloImage} name="Caio Barbeiro" /></li>
-        
+        <li onClick={() => handleBarberSelection('Danilo Ferreira')}><ModernBox profileImage={daniloImage} name="Danilo Ferreira" /></li>
+        <li onClick={() => handleBarberSelection('Endril')}><ModernBox profileImage={AlexandreImage} name="Endril" /></li>
+        <li onClick={() => handleBarberSelection('Alexandre Gonçalves')}><ModernBox profileImage={EndrilImage} name="Alexandre Gonçalves" /></li>
       </ul>
-      
+      </div>
     </div>
     )
   }
@@ -91,8 +100,10 @@ const ChooseService = ({ onNext, serviceChoosed }) => {
   };
 
   return (
-    <div>
-      <h2>Escolha o Serviço para </h2>
+    
+      <div className='location-css3'>
+      <div className='img-location3'><img src={imageState3}></img></div>
+      <div className='boxs3'>
       <ul className="list-unstyled">
         <li onClick={() => handleServiceSelection('Corte')}><BoxService profileImage={tesoura} name="Corte de cabelo" duracao="1 hora" preco="R$ 40,00" /></li>
         <li onClick={() => handleServiceSelection('Barba')}><BoxService profileImage={tesoura} name="Corte de cabelo" duracao="1 hora" preco="R$ 40,00" /></li>
@@ -103,6 +114,7 @@ const ChooseService = ({ onNext, serviceChoosed }) => {
         <li onClick={() => handleServiceSelection('Barba')}><BoxService profileImage={tesoura} name="Corte de cabelo" duracao="1 hora" preco="R$ 40,00" /></li>
         <li onClick={() => handleServiceSelection('Pacote Completo')}><BoxService profileImage={tesoura} name="Corte de cabelo" duracao="1 hora" preco="R$ 40,00" /></li>
       </ul>
+      </div>
       <div>
       
       
@@ -139,6 +151,8 @@ function BarberBookingApp () {
   const handleService = (service) => {
     setCurrentService(service);
   };
+  
+
   const handleBarber = (barber) => {
     setCurrentBarber(barber);
   };

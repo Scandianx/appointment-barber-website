@@ -1,0 +1,68 @@
+
+.location-css {
+    align-items: center;
+    position: relative;
+  }
+  .location-css2 {
+    align-items: center;
+    position: relative;
+  }
+  
+  .boxs {
+    
+    position: relative;
+    left: 15px;
+  }
+  .boxs2 {
+    
+    position: relative;
+    left: 15px;
+  }
+  
+  .img-location img {
+    max-width: 100%;
+    height: auto;
+    
+    
+    
+    
+  }
+  .img-location2 img{
+    max-width: 100%;
+    height: auto;
+  }
+  .img-location2 {
+    max-width: 600px; /* ou outro valor desejado */
+    position: relative;
+    left: 355px;
+    top:15px
+  }
+  
+  .img-location {
+    max-width: 600px; /* ou outro valor desejado */
+    position: relative;
+    left: 180px;
+  }
+  .img-location3 {
+    max-width: 600px; /* ou outro valor desejado */
+    position: absolute;
+    left: 590px;
+    top:150px;
+    
+  }
+  .img-location3 img{
+    max-width: 100%;
+    height: auto;
+    
+  }
+  .location-css3 {
+    
+  }
+  
+  .boxs3 {
+    
+    position: relative;
+    left: 15px;
+    top:300px;
+    
+  }
