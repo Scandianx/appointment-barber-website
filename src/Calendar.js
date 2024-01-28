@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Calendar.css';
-const Calendar = () => {
+const Calendar = ({getDate}) => {
   const daysOfWeek = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'];
   const months = [
     'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -31,6 +31,7 @@ const Calendar = () => {
   const handleDateClick = (day) => {
     const selectedDateObject = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
     setSelectedDate(selectedDateObject);
+    getDate(selectedDateObject);
     setSelectedDay(day);
   };
 

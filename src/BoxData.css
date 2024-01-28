@@ -127,6 +127,9 @@
   text-decoration: none;
   color: black;
 }
+.schedule-item:hover {
+  background-color: gray;
+}
 .calendar-info::-webkit-scrollbar {
   width: 12px; /* Largura da barra de rolagem */
 }
