@@ -10,41 +10,76 @@ import Calendar from './Calendar';
 import Modal from './Modal';
 import BoxData from './BoxData';
 import logo from './imgs/logo.png';
+import BoxLocation from './BoxLocation';
 
+const ChooseLocation = ({ onNext, locatinChoosed }) => {
+  const [selectedLocation, setSelectedLocation] = useState('');
+  
+  const handleLocationSelection = (location) => {
+    setSelectedLocation(location);
+    locatinChoosed(location)
+    onNext('barber'); 
+    console.log(location)
+  };
 
-const ChooseBarber = ({ onNext }) => {
+  return (
+    
+     <div>
+      <ul className="list-unstyled">
+        
+     <li onClick={() => handleLocationSelection('1')}><BoxLocation profileImage={daniloImage} address="Danilo Ferreira" /></li>
+     <li onClick={() => handleLocationSelection('2')}><BoxLocation profileImage={AlexandreImage} address="Endril" /></li>
+     
+   </ul>
+   </div>
+  );
+};
+const ChooseBarber = ({ onNext, barberChoosed, selectedLocation }) => {
   const [selectedBarber, setSelectedBarber] = useState('');
   
   const handleBarberSelection = (barber) => {
     setSelectedBarber(barber);
+    barberChoosed(barber)
     onNext('service'); 
-    console.log(barber)
+    
   };
-
-  return (
+  if (selectedLocation==='1') {return (
     <div>
       <h2>Escolha o Barbeiro</h2>
       <ul className="list-unstyled">
-        <li onClick={() => handleBarberSelection('Barbeiro 1')}><ModernBox profileImage={daniloImage} name="Danilo Ferreira" /></li>
-        <li onClick={() => handleBarberSelection('Barbeiro 2')}><ModernBox profileImage={AlexandreImage} name="Endril" /></li>
-        <li onClick={() => handleBarberSelection('Barbeiro 3')}><ModernBox profileImage={EndrilImage} name="Alexandre Gonçalves" /></li>
+        <li onClick={() => handleBarberSelection('Danilo Ferreira')}><ModernBox profileImage={daniloImage} name="Danilo Ferreira" /></li>
+        <li onClick={() => handleBarberSelection('Endril')}><ModernBox profileImage={AlexandreImage} name="Endril" /></li>
+        <li onClick={() => handleBarberSelection('Alexandre Gonçalves')}><ModernBox profileImage={EndrilImage} name="Alexandre Gonçalves" /></li>
       </ul>
       
     </div>
-  );
+  );}
+  else {
+    return (
+      <div>
+      <h2>Escolha o Barbeiro</h2>
+      <ul className="list-unstyled">
+        <li onClick={() => handleBarberSelection('Caio')}><ModernBox profileImage={daniloImage} name="Caio Barbeiro" /></li>
+        
+      </ul>
+      
+    </div>
+    )
+  }
+  
 };
 
 // Componente para a escolha do serviço
-const ChooseService = ({ selectedBarber, onNext }) => {
+const ChooseService = ({ onNext, serviceChoosed }) => {
   const [selectedService, setSelectedService] = useState('');
   const [modal, setModal] = useState(false);
 
   const handleServiceSelection = (service) => {
     setSelectedService(service);
+    serviceChoosed(service);
     
-    setModal(true)
-    onNext('location');
-    console.log(service)
+    onNext('date');
+    
   };
 
   const handleNext = () => {
@@ -57,7 +92,7 @@ const ChooseService = ({ selectedBarber, onNext }) => {
 
   return (
     <div>
-      <h2>Escolha o Serviço para {selectedBarber}</h2>
+      <h2>Escolha o Serviço para </h2>
       <ul className="list-unstyled">
         <li onClick={() => handleServiceSelection('Corte')}><BoxService profileImage={tesoura} name="Corte de cabelo" duracao="1 hora" preco="R$ 40,00" /></li>
         <li onClick={() => handleServiceSelection('Barba')}><BoxService profileImage={tesoura} name="Corte de cabelo" duracao="1 hora" preco="R$ 40,00" /></li>
@@ -81,7 +116,7 @@ const ChooseService = ({ selectedBarber, onNext }) => {
 };
 
 // Componente para a escolha do local
-const ChooseLocation = ({ selectedBarber, selectedService }) => {
+const ChooseDate = ({ selectedBarber, selectedService }) => {
   return (
     <div>
       
@@ -94,8 +129,19 @@ const ChooseLocation = ({ selectedBarber, selectedService }) => {
 
 // Componente principal
 function BarberBookingApp () {
-  const [currentStep, setCurrentStep] = useState('barber');
-  
+  const [currentStep, setCurrentStep] = useState('location');
+  const [currentBarber, setCurrentBarber] = useState('');
+  const [currentLocation, setCurrentLocation] = useState('');
+  const [currentService, setCurrentService] = useState('');
+  const handleLocation = (location) => {
+    setCurrentLocation(location);
+  };
+  const handleService = (service) => {
+    setCurrentService(service);
+  };
+  const handleBarber = (barber) => {
+    setCurrentBarber(barber);
+  };
 
   const handleNextStep = (nextStep) => {
     setCurrentStep(nextStep);
@@ -103,9 +149,10 @@ function BarberBookingApp () {
 
   return (
     <div>
-      {currentStep === 'barber' && <ChooseBarber onNext={handleNextStep} />}
-      {currentStep === 'service' && <ChooseService selectedBarber="Barbeiro 1" onNext={handleNextStep} />}
-      {currentStep === 'location' && <ChooseLocation selectedBarber="Barbeiro 1" selectedService="Corte" />}
+      {currentStep === 'location' && <ChooseLocation onNext={handleNextStep} locatinChoosed={handleLocation}/>}
+      {currentStep === 'barber' && <ChooseBarber onNext={handleNextStep} barberChoosed={handleBarber} selectedLocation={currentLocation}/>}
+      {currentStep === 'service' && <ChooseService onNext={handleNextStep} serviceChoosed={handleService}/>}
+      {currentStep === 'date' && <ChooseDate selectedBarber={currentBarber} selectedService={currentService} />}
     </div>
   );
 }
