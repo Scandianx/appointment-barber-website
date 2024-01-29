@@ -34,14 +34,15 @@
   .img-location2 {
     max-width: 600px; /* ou outro valor desejado */
     position: relative;
-    left: 355px;
-    top:15px
+    left: 430px;
+    top:8px
   }
   
   .img-location {
     max-width: 600px; /* ou outro valor desejado */
     position: relative;
-    left: 180px;
+    left: 230px;
+    
   }
   .img-location3 {
     max-width: 600px; /* ou outro valor desejado */

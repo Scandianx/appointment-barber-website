@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './BoxData.css';
 import Calendar from './Calendar';
 
-export default function BoxData({ profileImage, barber, service, serviceImage }) {
+export default function BoxData({ profileImage, barber, service, serviceImage, serviceValue }) {
   const [availableHours, setAvailableHours] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -96,7 +96,7 @@ export default function BoxData({ profileImage, barber, service, serviceImage })
       <div className="service-info">
         <img src={serviceImage} className='service-image' alt="Foto do serviço" />
         <div className="serviceKind"><h3>Serviço: {service}</h3></div>
-        <div className="serviceValue"><h3>Valor: {service}</h3></div>
+        <div className="serviceValue"><h3>Valor: {serviceValue}</h3></div>
       </div>
       <div className='calendar'><Calendar getDate={handleDate} /></div>
       <div className="calendar-info">

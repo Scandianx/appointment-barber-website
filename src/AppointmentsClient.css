@@ -1,26 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 .appointments {
     padding: 20px;
+    position: relative;
+    bottom: 50px;
+    
+    
+    
   }
   
   .appointments h2 {
     font-size: 24px;
     margin-bottom: 10px;
+    
+    
   }
+  
   
   .appointment-boxes {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
   }
-  
+  .appointment-box img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+
+  }
   .appointment-box {
     border: 1px solid #ccc;
     padding: 15px;
     border-radius: 8px;
+    background-color: #fff;
+    width: 600px;
+    height: 200px;
+    
   }
   
   .appointment-box p {
     margin: 5px 0;
+    color: black;
+    font-family: 'Bebas Neue', sans-serif;
   }
   
   .appointment-box button {
@@ -31,5 +51,36 @@
     cursor: pointer;
     border-radius: 4px;
     margin-top: 10px;
+    position: relative;
+    bottom:70px
+  }
+  .tipo {
+    position: relative;
+    
+    bottom: 100px;
+    font-size: 20px;
+  }
+  .hora {
+    position: relative;
+    left: 520px;
+    background-color: grey;
+    width: 40px;
+    border-radius: 6px;
+    font-size: 20px;
+    bottom: 34px;
+  }
+  .dia {
+    position: relative;
+    
+    background-color: grey;
+    width: 80px;
+    border-radius: 6px;
+    font-size: 20px;
+  }
+  .nome {
+    font-size: 23px;
+    position: relative;
+    left: 85px;
+    bottom: 55px;
   }
   

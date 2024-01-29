@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './AppointmentsClient.css'; // Importe os estilos necessários
 import axios from 'axios';
+import profileImage from './imgs/AlexandreImage.png'
 
 const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -54,11 +55,13 @@ const Appointments = () => {
         <div className='appointment-boxes'>
           {appointments.map(appointment => (
             <div key={appointment.id} className='appointment-box'>
-              <p>Barbeiro: {appointment.barberName}</p>
-              <p>Data: {new Date(appointment.date).toLocaleDateString()}</p>
-              <p>Tipo de Agendamento: {appointment.appointmentType}</p>
+              <img src={profileImage} alt="Profile" className="profile-image" />
+              <p className='nome'>{appointment.barberName}</p>
+              <div className='dia'><p>{new Date(appointment.date).toLocaleDateString()}</p></div>
+              <p className='hora'>{new Date(appointment.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+              <p className='tipo'>{appointment.appointmentType}</p>
               <button onClick={() => handleDeleteAppointment(appointment.id)}>
-                Excluir Agendamento
+                Cancelar agendamento
               </button>
             </div>
           ))}
