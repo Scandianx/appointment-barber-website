@@ -14,6 +14,8 @@ import BoxLocation from './BoxLocation';
 import imageState from './imgs/image-removebg-preview (3).png'
 import imageState2 from './imgs/image-removebg-preview (2).png'
 import imageState3 from './imgs/image-removebg-preview (1).png'
+import Header from './Header';
+import Appointments from './AppointmentsClient';
 
 const ChooseLocation = ({ onNext, locatinChoosed }) => {
   const [selectedLocation, setSelectedLocation] = useState('');
@@ -163,10 +165,12 @@ function BarberBookingApp () {
 
   return (
     <div>
+      <Header changeState={handleNextStep}/>
       {currentStep === 'location' && <ChooseLocation onNext={handleNextStep} locatinChoosed={handleLocation}/>}
       {currentStep === 'barber' && <ChooseBarber onNext={handleNextStep} barberChoosed={handleBarber} selectedLocation={currentLocation}/>}
       {currentStep === 'service' && <ChooseService onNext={handleNextStep} serviceChoosed={handleService}/>}
       {currentStep === 'date' && <ChooseDate selectedBarber={currentBarber} selectedService={currentService} />}
+      {currentStep === 'appointments' && <Appointments/>}
     </div>
   );
 }

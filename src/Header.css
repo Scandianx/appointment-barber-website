@@ -17,6 +17,7 @@
 
 .logo img {
   height: 40px; /* Ajuste a altura conforme necessário */
+  margin-top: 20px;
 }
 
 .links a {
@@ -25,6 +26,8 @@
   text-decoration: none;
   font-size: 22px;
   font-family: 'Bebas Neue', sans-serif;
+  position: relative;
+  right: 50px;
   
   
 }
