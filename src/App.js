@@ -4,12 +4,27 @@ import './App.css'; // Importe os estilos do aplicativo
 import ModernBox from './ModernBox';
 import BarberBookingApp from './BarberBookingAPP';
 import LoginPage from './LoginPage';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
 
   const handleLoginSuccess = () => {
     setAuthenticated(true);
+    toast.success('Login realizado com sucesso!', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      style: {
+        backgroundColor: 'green',
+        color: 'white',
+      },
+    });
   };
 
   const handleLogout = () => {
@@ -18,7 +33,7 @@ const App = () => {
 
   return (
     <div className="App">
-      
+      <ToastContainer />
       {authenticated ? (
         
         <BarberBookingApp />

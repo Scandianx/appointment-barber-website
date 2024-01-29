@@ -130,6 +130,10 @@
 .schedule-item:hover {
   background-color: gray;
 }
+.schedule-item.selected {
+  background-color: gray;
+  color: white; /* opcional: altera a cor do texto quando selecionado */
+}
 .calendar-info::-webkit-scrollbar {
   width: 12px; /* Largura da barra de rolagem */
 }

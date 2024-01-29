@@ -35,8 +35,8 @@ const LoginPage = ({ onLoginSuccess }) => {
       })
       .then((data) => {
         if (data.token) {
-          console.log("Token recebido:", data.token);
-          
+            
+          localStorage.setItem('token', data.token);
           onLoginSuccess();
         } else {
           alert("Login falhou. Por favor, verifique suas credenciais.");

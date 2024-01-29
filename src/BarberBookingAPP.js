@@ -5,9 +5,6 @@ import BoxService from './BoxService';
 import daniloImage from './danilo.png'
 import EndrilImage from './imgs/AlexandreImage.png'
 import AlexandreImage from './imgs/EndrilImage.png'
-import tesoura from './imgs/tesoura.png'
-import Calendar from './Calendar';
-import Modal from './Modal';
 import BoxData from './BoxData';
 import logo from './imgs/logo.png';
 import BoxLocation from './BoxLocation';
@@ -25,9 +22,12 @@ import tesoura2 from './imgs/tesoura2.png'
 import navalha from './imgs/navalha.png'
 import med from './imgs/med.png'
 import maquina from './imgs/maquina.png'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ChooseLocation = ({ onNext, locatinChoosed }) => {
   const [selectedLocation, setSelectedLocation] = useState('');
+
   
   const handleLocationSelection = (location) => {
     setSelectedLocation(location);
@@ -39,6 +39,7 @@ const ChooseLocation = ({ onNext, locatinChoosed }) => {
   return (
     
      <div className='location-css'>
+      
       <div className='img-location'><img src={imageState}></img></div>
       <div className='boxs'>
       <ul className="list-unstyled">
@@ -92,7 +93,7 @@ const ChooseBarber = ({ onNext, barberChoosed, selectedLocation }) => {
 // Componente para a escolha do serviço
 const ChooseService = ({ onNext, serviceChoosed }) => {
   const [selectedService, setSelectedService] = useState('');
-  const [modal, setModal] = useState(false);
+  
 
   const handleServiceSelection = (service) => {
     setSelectedService(service);
@@ -139,7 +140,7 @@ const ChooseService = ({ onNext, serviceChoosed }) => {
 };
 
 // Componente para a escolha do local
-const ChooseDate = ({ selectedBarber, selectedService }) => {
+const ChooseDate = ({ selectedBarber, selectedService, changeNext }) => {
   let profileImage;
   let serviceValue;
   if (selectedService === 'Corte de cabelo') {
@@ -179,8 +180,8 @@ if (selectedBarber === 'Danilo') {
     
     <div>
       
-      <BoxData profileImage={profileImage} barber={selectedBarber} service={selectedService} serviceImage={logo} serviceValue={serviceValue}/>
-            
+      <BoxData profileImage={profileImage} barber={selectedBarber} service={selectedService} serviceImage={logo} serviceValue={serviceValue} changeNext={changeNext}/>
+      
         
     </div>
   );
@@ -207,15 +208,40 @@ function BarberBookingApp () {
   const handleNextStep = (nextStep) => {
     setCurrentStep(nextStep);
   };
+  const handleFinal = async (nextStep) => {
+    setCurrentStep(nextStep);
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    
+    toast.success('Agendamento realizado com sucesso!', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      style: {
+        backgroundColor: 'green',
+        color: 'white',
+      },
+    });
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    
+    
+  };
+
 
   return (
     <div>
       <Header changeState={handleNextStep}/>
+      
       {currentStep === 'location' && <ChooseLocation onNext={handleNextStep} locatinChoosed={handleLocation}/>}
       {currentStep === 'barber' && <ChooseBarber onNext={handleNextStep} barberChoosed={handleBarber} selectedLocation={currentLocation}/>}
       {currentStep === 'service' && <ChooseService onNext={handleNextStep} serviceChoosed={handleService}/>}
-      {currentStep === 'date' && <ChooseDate selectedBarber={currentBarber} selectedService={currentService} />}
+      {currentStep === 'date' && <ChooseDate selectedBarber={currentBarber} selectedService={currentService} changeNext={handleFinal}/>}
       {currentStep === 'appointments' && <Appointments/>}
+      
+      
     </div>
   );
 }
