@@ -1,70 +1,58 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+README (Português)
+Sistema de Agendamento para Barbearias
 
-## Available Scripts
+Este é um projeto de sistema de agendamento para barbearias, desenvolvido utilizando as tecnologias Java, Spring Boot, Hibernate, React.js e autenticação JWT. O sistema proporciona uma solução eficiente para gerenciar os agendamentos de uma barbearia, facilitando a marcação de horários pelos clientes e a organização interna do estabelecimento.
 
-In the project directory, you can run:
+Recursos Principais
+Agendamento de Horários: Os clientes podem facilmente agendar horários de atendimento.
+Gerenciamento de Clientes: Cadastro e organização de informações sobre os clientes.
+Configuração do Ambiente de Desenvolvimento
+Backend (Java, Spring Boot, Hibernate):
 
-### `npm start`
+Clone o repositório.
+Abra o projeto na sua IDE preferida.
+Configure o arquivo application.properties com as configurações do banco de dados.
+Frontend (React.js):
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Navegue até o diretório frontend no terminal.
+Execute npm install para instalar as dependências.
+Execute npm start para iniciar o servidor de desenvolvimento.
+Autenticação JWT:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Implementação de autenticação JWT para garantir a segurança do sistema.
+Licença
 
-### `npm test`
+Este projeto é licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
+Contribuição
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Sinta-se à vontade para contribuir com melhorias. Abra uma issue ou envie um pull request.
+README (Inglês)
+Barber Scheduling System
 
-### `npm run build`
+This is a scheduling system project for barbershops, developed using Java, Spring Boot, Hibernate, React.js, and JWT authentication. The system provides an efficient solution for managing appointments in a barbershop, making it easy for clients to schedule appointments, and for the internal organization of the establishment.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Key Features
+Appointment Scheduling: Clients can easily schedule appointments.
+Customer Management: Registration and organization of customer information.
+Development Environment Setup
+Backend (Java, Spring Boot, Hibernate):
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Clone the repository.
+Open the project in your preferred IDE.
+Configure the application.properties file with the database settings.
+Frontend (React.js):
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Navigate to the frontend directory in the terminal.
+Run npm install to install dependencies.
+Run npm start to start the development server.
+JWT Authentication:
 
-### `npm run eject`
+Implementation of JWT authentication for system security.
+License
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This project is licensed under the MIT License. See the LICENSE file for more details.
+Contribution
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to contribute with improvements. Open an issue or submit a pull request.
+Nota: Este projeto é licenciado sob a Licença MIT, permitindo que você use, modifique e distribua o código, desde que mantenha o aviso de copyright e a isenção de responsabilidade. Certifique-se de ajustar as informações de autoria conforme necessário.
