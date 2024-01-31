@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import Header from './Header';
+import React, { useState, useEffect } from 'react';
 import './App.css'; // Importe os estilos do aplicativo
-import ModernBox from './ModernBox';
 import BarberBookingApp from './BarberBookingAPP';
 import LoginPage from './LoginPage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
+  useEffect(() => {
+    document.title = 'Caio Barbearia';
+  }, []);
 
   const handleLoginSuccess = () => {
     setAuthenticated(true);

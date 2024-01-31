@@ -9,7 +9,7 @@ export default function ModernBox({ profileImage, name }) {
       </div>
       <h2>{name}</h2>
       
-      <button>Selecionar</button>
+      <button >Selecionar</button>
     </div>
   );
 };
