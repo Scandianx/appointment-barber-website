@@ -7,14 +7,11 @@
 Sistema de agendamento para barbearias, desenvolvido utilizando as tecnologias Java, Spring Boot, Hibernate, React.js e autenticação JWT. O sistema proporciona uma solução eficiente para gerenciar os agendamentos de uma barbearia, facilitando a marcação de horários pelos clientes e a organização interna do estabelecimento. Essa é a versão 1 do projeto, ainda serão adicionadas novas funcionalidades. 
 
 ## Login Page
-[Imgur](https://imgur.com/YByOyOq)
+![LoginPage](https://github.com/Scandianx/appointment-barber-website2/blob/main/assets/Sem%20t%C3%ADtulo.gif)
 
 ## Agendamento
-<img src="https://imgur.com/YByOyOq" alt="Assista ao GIF">
+![Modelo Conceitual](https://github.com/Scandianx/appointment-barber-website2/blob/main/assets/Sem%20t%C3%ADtulo2.gif)
 
-![Modelo Conceitual](https://github.com/Scandianx/appointment-barber-website2/blob/main/assets/Sem%20t%C3%ADtulo.gif)
-## Modelo conceitual
-![Modelo Conceitual](https://github.com/acenelio/assets/raw/main/sds1/modelo-conceitual.png)
 
 # Tecnologias utilizadas
 ## Back end
