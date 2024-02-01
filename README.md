@@ -11,6 +11,7 @@ Sistema de agendamento para barbearias, desenvolvido utilizando as tecnologias J
 
 ## Agendamento
 ![Modelo Conceitual](https://github.com/Scandianx/appointment-barber-website2/blob/main/assets/Sem%20t%C3%ADtulo2.gif)
+(Github tirou um pouco da qualidade das imagens)
 
 
 # Tecnologias utilizadas
@@ -64,7 +65,7 @@ yarn start
 
 # Autor
 
-Filipe Scandiani Soave 
+Filipe Scandiani 
 
 
 
