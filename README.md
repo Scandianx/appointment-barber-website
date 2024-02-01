@@ -7,10 +7,10 @@
 Sistema de agendamento para barbearias, desenvolvido utilizando as tecnologias Java, Spring Boot, Hibernate, React.js e autenticação JWT. O sistema proporciona uma solução eficiente para gerenciar os agendamentos de uma barbearia, facilitando a marcação de horários pelos clientes e a organização interna do estabelecimento. Essa é a versão 1 do projeto, ainda serão adicionadas novas funcionalidades. 
 
 ## Login Page
-[Imgur](https://i.imgur.com/YByOyOq.gifv)
+[Imgur](https://imgur.com/YByOyOq)
 
 ## Agendamento
-<img src="https://i.imgur.com/YByOyOq.gif" alt="Assista ao GIF">
+<img src="https://imgur.com/YByOyOq" alt="Assista ao GIF">
 
 
 ## Modelo conceitual
