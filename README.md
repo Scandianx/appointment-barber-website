@@ -10,7 +10,7 @@ Sistema de agendamento para barbearias, desenvolvido utilizando as tecnologias J
 [Imgur](https://i.imgur.com/YByOyOq.gifv)
 
 ## Agendamento
-[img]https://i.imgur.com/R27S71i.mp4[/img]
+<a href="https://imgur.com/YByOyOq"><img src="https://i.imgur.com/YByOyOq.gif" title="source: imgur.com" /></a>
 
 ## Modelo conceitual
 ![Modelo Conceitual](https://github.com/acenelio/assets/raw/main/sds1/modelo-conceitual.png)
