@@ -39,7 +39,7 @@ Pré-requisitos: Java 11
 
 ```bash
 # clonar repositório
-git clone https://github.com/devsuperior/sds1-wmazoni
+git clone https://github.com/Scandianx/appointment-barber-website
 
 # entrar na pasta do projeto back end
 cd backend
