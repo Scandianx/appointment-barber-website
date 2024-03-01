@@ -1,118 +1,80 @@
+.location-css,
+.location-css2,
+.location-css3 {
+  align-items: center;
+  position: relative;
+  list-style: none;
+  display: flex; /* Exibir os itens na horizontal */
+  flex-direction: column; /* Exibir itens em coluna por padrão */
+  justify-content: space-between;
+}
 
-.location-css {
-    align-items: center;
-    position: relative;
-    list-style: none;
-    display: flex; /* Exibir os itens na horizontal */
-     /* Remover o preenchimento padrão da lista */
-    flex-direction: column; /* Exibir itens em linha por padrão */
-    justify-content: space-between;
-    
-    
-    
-    
-    
-  }
-  .list-unstyled2 {
-    align-items: center;
-    position: relative;
-    list-style: none;
-    display: flex; /* Exibir os itens na horizontal */
-     /* Remover o preenchimento padrão da lista */
-    flex-direction: row; /* Exibir itens em linha por padrão */
-    justify-content: space-between;
-  }
+.list-unstyled2 {
+  align-items: center;
+  position: relative;
+  list-style: none;
+  display: flex; /* Exibir os itens na horizontal */
+  flex-direction: row; /* Exibir itens em linha por padrão */
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-left: 180px;
+  height: 500px;
+
   
-  @media (max-width: 568px) {
-    .location-css {
-       margin-top: 300px;
-    }
-    .location-css2 {
-      margin-top: 600px;
-    }
-    
+  
+  
+}
+.list-unstyled2 li {
+  flex-basis: calc(33%) ; /* Em telas menores, cada item ocupa toda a largura */
+}
 
+@media screen and (max-width: 1668px) {
+  .list-unstyled2{
+    margin-left: 180px
   }
+}
 
+@media screen and (max-width: 768px) {
+  .list-unstyled2 li {
+    flex-basis: calc(100%) ; /* Em telas menores, cada item ocupa toda a largura */
+  }
+}
+
+@media (max-width: 568px) {
+  .location-css {
+    margin-top: 300px;
+  }
   .location-css2 {
-    align-items: center;
-    position: relative;
-    list-style: none;
-    display: flex; /* Exibir os itens na horizontal */
-     /* Remover o preenchimento padrão da lista */
-    flex-direction: column; /* Exibir itens em linha por padrão */
-    justify-content: space-between;
-    
+    margin-top: 600px;
   }
-  
-  .boxs {
-    
-    position: relative;
-    left: -19px;
+ 
+  .list-unstyled2{
+    margin-left: 35px
+  }
+}
 
-  }
-  .boxs2 {
-    
-    position: relative;
-    left: -19px;
-    display: flex;
-  }
-  .boxs3 {
-    
-    position: relative;
-    left: -19px;
-    
-    
-    
-  }
-  
-  .img-location img {
-    max-width: 100%;
-    height: auto;
-    
-    
-    
-    
-    
-  }
-  .img-location2 img{
-    max-width: 100%;
-    height: auto;
-  }
-  .img-location2 {
-    max-width: 600px; /* ou outro valor desejado */
-    position: relative;
-    align-items: center;
-  }
-  
-  .img-location {
-    max-width: 600px; /* ou outro valor desejado */
-    position: relative;
-    align-items: center;
-    
-    
-    
-  }
-  .img-location3 {
-    max-width: 600px; /* ou outro valor desejado */
-    position: relative;
-    align-items: center;
-    
-  }
-  .img-location3 img{
-    max-width: 100%;
-    height: auto;
-    
-  }
-  .location-css3 {
-    margin-top: 400px;
-    align-items: center;
-    position: relative;
-    list-style: none;
-    display: flex; /* Exibir os itens na horizontal */
-     /* Remover o preenchimento padrão da lista */
-    flex-direction: column; /* Exibir itens em linha por padrão */
-    justify-content: space-between;
-  }
-  
-  
+.boxs,
+.boxs2,
+.boxs3 {
+  position: relative;
+  left: -19px;
+}
+
+.img-location img,
+.img-location2 img,
+.img-location3 img {
+  max-width: 100%;
+  height: auto;
+}
+
+.img-location,
+.img-location2,
+.img-location3 {
+  max-width: 600px; /* ou outro valor desejado */
+  position: relative;
+  align-items: center;
+}
+
+.location-css3 {
+  margin-top: 100px;
+}

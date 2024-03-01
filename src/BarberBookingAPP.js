@@ -120,8 +120,8 @@ const ChooseService = ({ onNext, serviceChoosed }) => {
         <li onClick={() => handleServiceSelection('Corte de cabelo')}><BoxService profileImage={tesoura2} name="Corte de cabelo" duracao="30 minutos" preco="R$ 40,00" /></li>
         <li onClick={() => handleServiceSelection('Barba')}><BoxService profileImage={navalha} name="Barba" duracao="30 minutos" preco="R$ 30,00" /></li>
         <li onClick={() => handleServiceSelection('Corte e sobrancelha')}><BoxService profileImage={maquina} name="Corte e sobrancelha" duracao="30 minutos" preco="R$ 50,00" /></li>
-      </ul>
-      <ul className="list-unstyled2">
+      
+      
         <li onClick={() => handleServiceSelection('Corte e relaxamento')}><BoxService profileImage={med} name="Corte e relaxamento" duracao="80 minutos" preco="R$ 40,00" /></li>
         <li onClick={() => handleServiceSelection('Corte e barba')}><BoxService profileImage={maquina} name="Corte e barba" duracao="1 hora" preco="R$ 70,00" /></li>
         <li onClick={() => handleServiceSelection('Pezinho')}><BoxService profileImage={tesoura2} name="Pezinho" duracao="15 minutos" preco="R$ 20,00" /></li>
