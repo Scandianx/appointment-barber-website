@@ -2,7 +2,10 @@
 .list-unstyled {
     list-style: none;
     display: flex; /* Exibir os itens na horizontal */
-    padding: 0 100px; /* Remover o preenchimento padrão da lista */
+     /* Remover o preenchimento padrão da lista */
+    flex-direction: row; /* Exibir itens em linha por padrão */
+    justify-content: space-between; /* Distribuir os itens ao longo do eixo principal */
+
   }
 .modern-box {
     width: 300px; /* Largura fixa para o tamanho padrão da box */
@@ -16,6 +19,13 @@
     margin-top: 100px;
     
   }
+  @media (max-width: 600px) {
+    .list-unstyled {
+      flex-direction: column; /* Alterar para exibir os itens em coluna */
+      align-items: center; /* Alinhar os itens ao centro */
+    }
+  }
+  
   
   /* Estilo para o contêiner da imagem do perfil */
   .profile-container {

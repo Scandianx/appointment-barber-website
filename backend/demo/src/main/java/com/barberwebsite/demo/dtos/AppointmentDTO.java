@@ -2,9 +2,9 @@ package com.barberwebsite.demo.dtos;
 
 import java.util.Date;
 
-
-
 import com.barberwebsite.demo.model.AppointmentType;
+
+
 
 
 

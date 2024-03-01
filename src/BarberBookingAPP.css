@@ -2,26 +2,73 @@
 .location-css {
     align-items: center;
     position: relative;
+    list-style: none;
+    display: flex; /* Exibir os itens na horizontal */
+     /* Remover o preenchimento padrão da lista */
+    flex-direction: column; /* Exibir itens em linha por padrão */
+    justify-content: space-between;
+    
+    
+    
+    
+    
   }
+  .list-unstyled2 {
+    align-items: center;
+    position: relative;
+    list-style: none;
+    display: flex; /* Exibir os itens na horizontal */
+     /* Remover o preenchimento padrão da lista */
+    flex-direction: row; /* Exibir itens em linha por padrão */
+    justify-content: space-between;
+  }
+  
+  @media (max-width: 568px) {
+    .location-css {
+       margin-top: 300px;
+    }
+    .location-css2 {
+      margin-top: 600px;
+    }
+    
+
+  }
+
   .location-css2 {
     align-items: center;
     position: relative;
+    list-style: none;
+    display: flex; /* Exibir os itens na horizontal */
+     /* Remover o preenchimento padrão da lista */
+    flex-direction: column; /* Exibir itens em linha por padrão */
+    justify-content: space-between;
+    
   }
   
   .boxs {
     
     position: relative;
-    left: 15px;
+    left: -19px;
+
   }
   .boxs2 {
     
     position: relative;
-    left: 15px;
+    left: -19px;
+    display: flex;
+  }
+  .boxs3 {
+    
+    position: relative;
+    left: -19px;
+    
+    
   }
   
   .img-location img {
     max-width: 100%;
     height: auto;
+    
     
     
     
@@ -34,21 +81,21 @@
   .img-location2 {
     max-width: 600px; /* ou outro valor desejado */
     position: relative;
-    left: 430px;
-    top:8px
+    align-items: center;
   }
   
   .img-location {
     max-width: 600px; /* ou outro valor desejado */
     position: relative;
-    left: 230px;
+    align-items: center;
+    
+    
     
   }
   .img-location3 {
     max-width: 600px; /* ou outro valor desejado */
-    position: absolute;
-    left: 590px;
-    top:150px;
+    position: relative;
+    align-items: center;
     
   }
   .img-location3 img{
@@ -57,13 +104,14 @@
     
   }
   .location-css3 {
-    
+    margin-top: 400px;
+    align-items: center;
+    position: relative;
+    list-style: none;
+    display: flex; /* Exibir os itens na horizontal */
+     /* Remover o preenchimento padrão da lista */
+    flex-direction: column; /* Exibir itens em linha por padrão */
+    justify-content: space-between;
   }
   
-  .boxs3 {
-    
-    position: relative;
-    left: 15px;
-    top:300px;
-    
-  }
+  

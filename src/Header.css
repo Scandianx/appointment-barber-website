@@ -1,5 +1,10 @@
 /* Header.css */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+body{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .header {
   height: 50px;
   width: 100%;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './BarberBookingAPP.css';
 import ModernBox from './ModernBox';
 import BoxService from './BoxService';
-import daniloImage from './danilo.png'
+import daniloImage from './imgs/danilo.png'
 import EndrilImage from './imgs/AlexandreImage.png'
 import AlexandreImage from './imgs/EndrilImage.png'
 import BoxData from './BoxData';

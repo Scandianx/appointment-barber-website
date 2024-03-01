@@ -1,5 +1,8 @@
 package com.barberwebsite.demo.model;
 
+
+
+
 public enum AppointmentType {
     HAIR_CUT("Hair Cut"),
     BEARD("Beard"),
@@ -19,4 +22,3 @@ public enum AppointmentType {
         return description;
     }
 }
-

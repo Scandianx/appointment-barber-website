@@ -14,8 +14,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
-
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -23,7 +24,9 @@ import lombok.Setter;
 @DiscriminatorColumn(name = "user_type")
 @Getter
 @Setter
-public class Userr implements UserDetails {
+@AllArgsConstructor
+@NoArgsConstructor
+public abstract class Userr implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -47,8 +50,6 @@ public class Userr implements UserDetails {
         this.phoneNumber = phoneNumber;
     }
 
-    public Userr() {
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
