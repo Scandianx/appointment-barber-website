@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const App = () => {
-  const [authenticated, setAuthenticated] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
   useEffect(() => {
     document.title = 'Caio Barbearia';
   }, []);
@@ -29,10 +29,7 @@ const App = () => {
     });
   };
 
-  const handleLogout = () => {
-    setAuthenticated(false);
-  };
-
+ 
   return (
     <div className="App">
       <ToastContainer />

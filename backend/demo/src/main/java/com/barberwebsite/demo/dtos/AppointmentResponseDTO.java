@@ -13,12 +13,12 @@ public class AppointmentResponseDTO {
     private Integer id;
     private String barberName;
     private Date date;
-    private AppointmentType appointmentKind;
+    private AppointmentType appointmentType;
     public AppointmentResponseDTO (Integer id, String barberName, Date date, AppointmentType appointmentType) {
         this.id=id;
         this.barberName=barberName;
         this.date=date;
-        this.appointmentKind=appointmentType;
+        this.appointmentType=appointmentType;
     }
 
 }

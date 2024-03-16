@@ -34,6 +34,7 @@ const Appointments = ({}) => {
 
       // Atualizar o estado com os agendamentos obtidos
       setAppointments(response.data);
+      
     } catch (error) {
       console.error('Erro ao obter agendamentos:', error);
     }
@@ -75,7 +76,7 @@ const Appointments = ({}) => {
               <div className='dia'><p>{new Date(appointment.date).toLocaleDateString()}</p></div>
               <p className='hora'>{new Date(appointment.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
               <p className='tipo'>{serviceTranslations[appointment.appointmentType]}</p>
-              <button onClick={() => handleDeleteAppointment(appointment.id)}>
+              <button  className='buttonA' onClick={() => handleDeleteAppointment(appointment.id)}>
                 Cancelar agendamento
               </button>
               <ToastContainer />

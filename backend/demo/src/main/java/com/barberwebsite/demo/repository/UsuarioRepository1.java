@@ -21,4 +21,5 @@ public interface UsuarioRepository1 extends JpaRepository<Userr, Integer> {
     Barber findBarberById(Integer id);
     Client findClientById(Integer id);
     Client findClientByUsername (String user);
+    Barber findBarberByUsername (String user);
 }

@@ -33,7 +33,7 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator_scheduling")
     private Integer id;
     @Column(nullable = false)
-    private AppointmentType appointmentKind;
+    private AppointmentType appointmentType;
     @Column(nullable = false)
     private Date date;
     @Column(nullable = true)
@@ -43,7 +43,7 @@ public class Appointment {
     @JsonBackReference(value = "barberValue")
     private Barber barber;
     public Appointment(AppointmentType appointmentType, Date date, String comments, Barber barber, Client client) {
-        this.appointmentKind = appointmentType;
+        this.appointmentType = appointmentType;
         this.date = date;
         this.comments = comments;
         this.barber = barber;

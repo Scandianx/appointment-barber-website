@@ -2,7 +2,7 @@
 .appointments {
     padding: 20px;
     position: relative;
-    bottom: 50px;
+   top: -300px;
     
     
     
@@ -20,6 +20,7 @@
   .appointment-boxes {
     display: grid;
     gap: 20px;
+    max-height: 100px;
   }
   .appointment-box img {
     width: 60px;
@@ -29,12 +30,14 @@
 
   }
   .appointment-box {
+    
     border: 1px solid #ccc;
     padding: 15px;
     border-radius: 8px;
     background-color: #fff;
     width: 600px;
-    height: 200px;
+    height: 190px;
+
     
   }
   
@@ -56,11 +59,13 @@
     bottom:70px
   }
   .tipo {
-    position: relative;
     
+    position: relative;
     bottom: 100px;
     font-size: 20px;
+    
   }
+  
   .hora {
     position: relative;
     left: 520px;
@@ -69,14 +74,16 @@
     border-radius: 6px;
     font-size: 20px;
     bottom: 34px;
+    
   }
   .dia {
-    position: relative;
     
+    position: relative;
     background-color: grey;
     width: 80px;
     border-radius: 6px;
     font-size: 20px;
+    
   }
   .nome {
     font-size: 23px;
@@ -84,4 +91,5 @@
     left: 85px;
     bottom: 55px;
   }
+  
   

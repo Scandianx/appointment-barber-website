@@ -51,6 +51,7 @@ export default function BoxData({
       };
 
       let mappedService = serviceTranslations[service];
+      console.log(mappedService)
       const selectedDateTime = new Date(currentDate);
       const [hours, minutes] = currentHour.split(':');
       selectedDateTime.setHours(Number(hours), Number(minutes));
@@ -59,7 +60,7 @@ export default function BoxData({
 
       const appointmentData = {
         appointmentType: mappedService,
-        barber: barberId,
+        barber: 1,
         client: token,
         date: formattedDate,
         comments: 'Corte de cabelo agendado',
@@ -114,7 +115,7 @@ export default function BoxData({
             },
             body: JSON.stringify({
               data: formattedDate,
-              idBarber: barberId,
+              idBarber: 1,
               type: 'HAIR_CUT',
             }),
           }

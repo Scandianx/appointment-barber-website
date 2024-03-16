@@ -39,14 +39,14 @@ public class AppointmentService {
 
     
     public Appointment newAppointment(@RequestBody AppointmentDTO appointmentDTO) {
-        Barber barber = usuarioRepository.findBarberById(appointmentDTO.barber());
+    Barber barber = usuarioRepository.findBarberById(appointmentDTO.barber());
     var username = tokenService.validateToken(appointmentDTO.client());
     Client client = usuarioRepository.findClientByUsername(username);
     
 
     // Criar o agendamento e associar o appointmentType
     Appointment appointment = new Appointment();
-    appointment.setAppointmentKind(appointment.getAppointmentKind());
+    appointment.setAppointmentType(appointmentDTO.appointmentType());
     appointment.setDate(appointmentDTO.date());
     appointment.setComments(appointmentDTO.comments());
     appointment.setBarber(barber);
@@ -129,13 +129,29 @@ public class AppointmentService {
     public List<AppointmentResponseDTO> clientAppointments (@PathVariable String token) {
         var username= tokenService.validateToken(token);
         Client client = usuarioRepository.findClientByUsername(username);
+        Barber barber= usuarioRepository.findBarberByUsername(username);
+        if (client==null) {
+            List<Appointment> barberAppointments= barber.getAppointments();
+            if (barberAppointments.isEmpty()) {
+                return null;
+            }
+        List<AppointmentResponseDTO> clientAppointmentsDTO= new ArrayList<>();
+        for (Appointment ap: barberAppointments) {
+            AppointmentResponseDTO apDTO= new AppointmentResponseDTO (ap.getId(), ap.getBarber().getName(), ap.getDate(), ap.getAppointmentType());
+             clientAppointmentsDTO.add(apDTO);
+        }
+        return clientAppointmentsDTO;
+     }
+
+        
+        
         List<Appointment> clientAppointments= client.getAppointments();
         if (clientAppointments.isEmpty()) {
             return null;
         }
         List<AppointmentResponseDTO> clientAppointmentsDTO= new ArrayList<>();
         for (Appointment ap: clientAppointments) {
-            AppointmentResponseDTO apDTO= new AppointmentResponseDTO (ap.getId(), ap.getBarber().getName(), ap.getDate(), ap.getAppointmentKind());
+            AppointmentResponseDTO apDTO= new AppointmentResponseDTO (ap.getId(), ap.getBarber().getName(), ap.getDate(), ap.getAppointmentType());
              clientAppointmentsDTO.add(apDTO);
         }
         return clientAppointmentsDTO;
