@@ -193,6 +193,7 @@ function BarberBookingApp () {
   const [currentBarber, setCurrentBarber] = useState('');
   const [currentLocation, setCurrentLocation] = useState('');
   const [currentService, setCurrentService] = useState('');
+  const [isAdmin, setIsAdmin] = useState(true);
   const handleLocation = (location) => {
     setCurrentLocation(location);
   };
@@ -239,7 +240,7 @@ function BarberBookingApp () {
       {currentStep === 'barber' && <ChooseBarber onNext={handleNextStep} barberChoosed={handleBarber} selectedLocation={currentLocation}/>}
       {currentStep === 'service' && <ChooseService onNext={handleNextStep} serviceChoosed={handleService}/>}
       {currentStep === 'date' && <ChooseDate selectedBarber={currentBarber} selectedService={currentService} changeNext={handleFinal}/>}
-      {currentStep === 'appointments' && <Appointments/>}
+      {currentStep === 'appointments' && <Appointments isAdmin={isAdmin}/>}
       
       
     </div>

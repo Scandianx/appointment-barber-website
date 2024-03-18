@@ -1,19 +1,54 @@
 import React, { useState } from 'react';
 import './Calendar.css';
 const Calendar = ({getDate}) => {
-  const daysOfWeek = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'];
+  
   const months = [
     'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
 ];
-
-  const currentDate2 = new Date();
+  var data = new Date();
+  data.setHours(data.getHours()- 3);
+  const currentDate2 = data;
   const currentDay2 = currentDate2.getUTCDate();
   const currentMonth = currentDate2.getUTCMonth();
   
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState(data);
   const [selectedDate, setSelectedDate] = useState(currentDate);
   const [selectedDay, setSelectedDay] = useState(currentDay2);
+
+  const calcDays = (currentDate2) => {
+    const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
+    const daysOfWeek2 = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'];
+    const daysOfWeek3 = ['Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom', 'Seg'];
+    const daysOfWeek4 = ['Qua', 'Qui', 'Sex', 'Sab', 'Dom', 'Seg', 'Ter'];
+    const daysOfWeek5 = ['Qui', 'Sex', 'Sab', 'Dom', 'Seg', 'Ter', 'Qua'];
+    const daysOfWeek6 = ['Sex', 'Sab', 'Dom', 'Seg', 'Ter', 'Qua', 'Qui'];
+    const daysOfWeek7 = ['Sab', 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
+
+    const diaSemana = currentDate2.getDay();
+    
+    
+    if (diaSemana === 0) {
+        return daysOfWeek;  
+    } else if (diaSemana === 1) {
+        return daysOfWeek2;
+    } else if (diaSemana === 2) {
+        return daysOfWeek3;
+    } else if (diaSemana   === 3) {
+        return daysOfWeek4;
+    } else if (diaSemana === 4) {
+        return daysOfWeek5;
+    } else if (diaSemana === 5) {
+        return daysOfWeek6;
+    }
+    
+    
+    return daysOfWeek7;
+};
+
+const [daysOfWeek, setDaysOfWeek] = useState(calcDays(new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)));
+
+
 
 
   const getCurrentMonthDays = () => {
@@ -31,23 +66,31 @@ const Calendar = ({getDate}) => {
   const handleDateClick = (day) => {
     const selectedDateObject = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
     setSelectedDate(selectedDateObject);
-    getDate(selectedDateObject);
+    
+    
     setSelectedDay(day);
+    
+    getDate(selectedDateObject);
+    
+    
   };
 
   const handlePrevMonth = () => {
     if (currentDate>currentDate2) {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
     setSelectedDay(null);
+    setDaysOfWeek(calcDays(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)));
 }
   };
 
   const handleNextMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
     setSelectedDay(null);
+    setDaysOfWeek(calcDays(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)));
   };
 
   const renderDaysOfWeek = () => {
+    
     return daysOfWeek.map((day, index) => (
       <li key={index}>{day}</li>
     ));

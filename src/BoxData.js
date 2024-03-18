@@ -12,7 +12,8 @@ export default function BoxData({
 }) {
   const [availableHours, setAvailableHours] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const date= new Date();
+  const [currentDate, setCurrentDate] = useState(date);
   const [currentHour, setCurrentHour] = useState('');
 
   const handleTimeClick = (time) => {
@@ -21,7 +22,7 @@ export default function BoxData({
 
   const handleDate = (date) => {
     setCurrentDate(date);
-    console.log(date.toISOString());
+    
   };
 
   const handleSubmit = async () => {
@@ -51,12 +52,13 @@ export default function BoxData({
       };
 
       let mappedService = serviceTranslations[service];
-      console.log(mappedService)
+      
       const selectedDateTime = new Date(currentDate);
       const [hours, minutes] = currentHour.split(':');
       selectedDateTime.setHours(Number(hours), Number(minutes));
       const token = localStorage.getItem('token');
       const formattedDate = selectedDateTime.toISOString();
+      console.log(formattedDate)
 
       const appointmentData = {
         appointmentType: mappedService,
@@ -105,7 +107,8 @@ export default function BoxData({
 
       try {
         const formattedDate = currentDate.toISOString();
-
+        
+         
         const response = await fetch(
           'http://localhost:8083/agendamento/consult-appointments',
           {
@@ -124,6 +127,8 @@ export default function BoxData({
         if (response.ok) {
           const data = await response.json();
           setAvailableHours(data);
+          
+          
         } else {
           console.error('Erro ao obter os horários disponíveis.');
         }
@@ -131,6 +136,7 @@ export default function BoxData({
         console.error('Erro ao realizar a requisição:', error);
       } finally {
         setLoading(false);
+        
       }
     };
 

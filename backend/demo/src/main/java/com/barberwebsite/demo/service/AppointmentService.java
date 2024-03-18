@@ -2,8 +2,11 @@ package com.barberwebsite.demo.service;
 
 
 
+
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,6 +29,9 @@ import com.barberwebsite.demo.repository.AppointmentRepository;
 import com.barberwebsite.demo.repository.UsuarioRepository1;
 import com.barberwebsite.demo.security.TokenService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 public class AppointmentService {
 
@@ -42,6 +48,7 @@ public class AppointmentService {
     Barber barber = usuarioRepository.findBarberById(appointmentDTO.barber());
     var username = tokenService.validateToken(appointmentDTO.client());
     Client client = usuarioRepository.findClientByUsername(username);
+    log.info("O cliente: " +  username + "Realizou um agendamento para o dia: " + appointmentDTO.date().toString());
     
 
     // Criar o agendamento e associar o appointmentType
@@ -109,7 +116,66 @@ public class AppointmentService {
         return ResponseEntity.ok("Appointment deleted successfully.");
     }
 
-    
+    public List<String> consultAllAppointments(@RequestBody ConsultAppointmentDTO data) {
+        log.info(data.data().toString()+ "Essa foi a data selecionada");
+        Barber barber = usuarioRepository.findBarberById(data.idBarber());
+        List<Appointment> barberAppointments = obterAgendamentosDoDia(barber.getAppointments(), data.data());
+        for(Appointment ap: barberAppointments) {
+            log.info(ap.getDate().toString());
+        }
+        
+        List<String> allHours = Arrays.asList(
+                "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
+                "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
+                "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00");
+        boolean isCurrentDay = isMesmoDia(data.data(), setarFuso(new Date()));
+        List<String> availableHours = allHours.stream()
+        .filter(hour -> {
+            if (isCurrentDay) { // Verifica se o dia escolhido é o dia atual
+                LocalTime currentTimeMinusThreeHours = LocalTime.now();
+                LocalTime currentHour = LocalTime.parse(hour);
+                
+                return currentHour.isAfter(currentTimeMinusThreeHours);
+                
+            } else {
+                
+                return true; // Retorna true para todos os horários se o dia escolhido não for o dia atual
+            }
+        })
+        .collect(Collectors.toList());
+        
+        List<String> appointmentStates = availableHours.stream().map(hour -> {
+            if (barberAppointments.stream().anyMatch(appointment -> isMesmaHora(appointment.getDate(), hour))) {
+                if (barberAppointments.stream().anyMatch(appointment -> isMesmaHoraBlock(appointment, hour))) {
+                    return "bloqueado";
+                }
+                else {
+                    return "ocupado";
+                }
+
+            }
+            else {
+                return "livre";
+            }
+        }).collect(Collectors.toList());
+        return appointmentStates;
+
+    }
+    private boolean isMesmaHoraBlock(Appointment appointment, String data2) {
+        java.util.Calendar calendar1 = java.util.Calendar.getInstance();
+        calendar1.setTime(appointment.getDate());
+
+        int hora1 = calendar1.get(java.util.Calendar.HOUR_OF_DAY);
+        int minuto1 = calendar1.get(java.util.Calendar.MINUTE);
+
+        data2 = data2.replace(":", "");
+        int hora2 = Integer.parseInt(data2.substring(0, 2));
+        int minuto2 = Integer.parseInt(data2.substring(2));
+
+        return hora1 == hora2 && minuto1 == minuto2 && appointment.getClient().getId()==52;
+    }
+
+
     public List<String> consultAppointments(@RequestBody ConsultAppointmentDTO data) {
         List<String> disponibleHours = new ArrayList<>();
         Barber barber = usuarioRepository.findBarberById(data.idBarber());
@@ -118,12 +184,50 @@ public class AppointmentService {
                 "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
                 "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
                 "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00");
-        disponibleHours = allHours.stream().filter(
+                
+
+                boolean isCurrentDay = isMesmoDia(data.data(), setarFuso(new Date()));
+                log.info("As datas: " + data.data().toString() + setarFuso(new Date()) + "entram na funcao: " +  isCurrentDay);
+        
+
+        List<String> availableHours = allHours.stream()
+        .filter(hour -> {
+            if (isCurrentDay) { // Verifica se o dia escolhido é o dia atual
+                LocalTime currentTimeMinusThreeHours = LocalTime.now();
+                LocalTime currentHour = LocalTime.parse(hour);
+                
+                return currentHour.isAfter(currentTimeMinusThreeHours);
+                
+            } else {
+                
+                return true; // Retorna true para todos os horários se o dia escolhido não for o dia atual
+            }
+        })
+        .collect(Collectors.toList());
+
+        disponibleHours = availableHours.stream().filter(
                 hora -> barberAppointments.stream().noneMatch(appointment -> isMesmaHora(appointment.getDate(), hora)))
                 .collect(Collectors.toList());
 
         return disponibleHours;
 
+    }
+    public String deleteAppointmentByDate (HttpServletRequest request, @PathVariable Date date) {
+         var barberToken= request.getHeader("Authorization");
+         if(barberToken != null && barberToken.startsWith("Bearer ")) {
+            String token= barberToken.substring(7);
+            log.info(token);
+            var username= tokenService.validateToken(token);
+            Barber barber = usuarioRepository.findBarberById(1);
+            List<Appointment> barberAppointments = barber.getAppointments();
+            for (Appointment ap: barberAppointments) {
+                if(isMesmoDia(ap.getDate(), date) && isMesmaHora2(date, ap.getDate())) {
+                    deleteAppointment(ap.getId());
+                    return "Horário desmarcado com sucesso";
+                }
+            }
+         }
+         return "Horario não desmarcado";
     }
     
     public List<AppointmentResponseDTO> clientAppointments (@PathVariable String token) {
@@ -170,6 +274,12 @@ public class AppointmentService {
 
         return data1.equals(data2);
     }
+    private Date setarFuso(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+         // Subtrai 3 horas do horário atual
+        return calendar.getTime(); // Retorna a nova data com o fuso horário aplicado
+    }
 
     private Date zerarHoraMinutoSegundo(Date data) {
         java.util.Calendar calendar = java.util.Calendar.getInstance();
@@ -194,5 +304,24 @@ public class AppointmentService {
 
         return hora1 == hora2 && minuto1 == minuto2;
     }
+    public boolean isMesmaHora2(Date data1, Date data2) {
+        java.util.Calendar calendar1 = java.util.Calendar.getInstance();
+        calendar1.setTime(data1);
+
+        int hora1 = calendar1.get(java.util.Calendar.HOUR_OF_DAY);
+        int minuto1 = calendar1.get(java.util.Calendar.MINUTE);
+
+        java.util.Calendar calendar2 = java.util.Calendar.getInstance();
+        calendar2.setTime(data2);
+
+        int hora2 = calendar1.get(java.util.Calendar.HOUR_OF_DAY);
+        int minuto2 = calendar1.get(java.util.Calendar.MINUTE);
+
+        return hora1 == hora2 && minuto1 == minuto2;
+    }
+
+    
+
+
 }
 

@@ -4,9 +4,11 @@ import axios from 'axios';
 import profileImage from './imgs/AlexandreImage.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Calendar from './Calendar';
+import BoxHorariosDisponiveis from './BoxHorariosDisponiveis';
 
 
-const Appointments = ({}) => {
+const Appointments = ({isAdmin}) => {
   const serviceTranslations = {
     'HAIR_CUT': 'Corte de cabelo',
     'BEARD': 'Barba',
@@ -15,9 +17,18 @@ const Appointments = ({}) => {
     'HAIR_AND_BEARD': 'Corte e barba',
     'LITTLE_HAIRCUT': 'Pezinho'
   };
+  var data = new Date();
+  data.setHours(data.getHours());
   
   const [appointments, setAppointments] = useState([]);
-
+  const [receita, setReceita] = useState(0);
+  const [clientes, setClientes] = useState(0);
+  const[currentDate, setCurrentDate] = useState(data)
+  const handleDate = (date) => {
+    setCurrentDate(date);
+    console.log(date, "--")
+    
+  };
   // Função para obter os agendamentos
   const fetchAppointments = async () => {
     try {
@@ -66,25 +77,49 @@ const Appointments = ({}) => {
 
   return (
     <div className='appointments'>
-      <h2>Meus Agendamentos</h2>
-      {appointments.length > 0 ? (
-        <div className='appointment-boxes'>
-          {appointments.map(appointment => (
-            <div key={appointment.id} className='appointment-box'>
-              <img src={profileImage} alt="Profile" className="profile-image" />
-              <p className='nome'>{appointment.barberName}</p>
-              <div className='dia'><p>{new Date(appointment.date).toLocaleDateString()}</p></div>
-              <p className='hora'>{new Date(appointment.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
-              <p className='tipo'>{serviceTranslations[appointment.appointmentType]}</p>
-              <button  className='buttonA' onClick={() => handleDeleteAppointment(appointment.id)}>
-                Cancelar agendamento
-              </button>
-              <ToastContainer />
-            </div>
-          ))}
-        </div>
+      
+      {!isAdmin ? (
+        appointments.length > 0 ? (
+          <div className='appointment-boxes'>
+            <h2>Meus Agendamentos</h2>
+            {appointments.map(appointment => (
+              <div key={appointment.id} className='appointment-box'>
+                <img src={profileImage} alt="Profile" className="profile-image" />
+                <p className='nome'>{appointment.barberName}</p>
+                <div className='dia'><p>{new Date(appointment.date).toLocaleDateString()}</p></div>
+                <p className='hora'>{new Date(appointment.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                <p className='tipo'>{serviceTranslations[appointment.appointmentType]}</p>
+                <button className='buttonA' onClick={() => handleDeleteAppointment(appointment.id)}>
+                  Cancelar agendamento
+                </button>
+                <ToastContainer />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>Você não tem agendamentos marcados.</p>
+        )
       ) : (
-        <p>Você não tem agendamentos marcados.</p>
+        <div className='appointment-boxes-barber'> 
+           <div className='appointment-box-barber'>
+            <div className='calendar'>
+            <Calendar getDate={handleDate}> </Calendar>
+            </div>
+            <div className='horarios'>
+            <BoxHorariosDisponiveis currentDate={currentDate}> </BoxHorariosDisponiveis>
+            </div>
+            
+           </div>
+           <div className='appointment-box-desktop'> 
+           <div className='receita'>  
+            {receita}
+           </div>
+           <div className='clientes'>  
+            {clientes}
+           </div>
+           </div>
+        </div>
+
       )}
     </div>
   );

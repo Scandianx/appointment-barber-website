@@ -29,6 +29,73 @@
     object-fit: cover;
 
   }
+  
+  .appointment-boxes-barber{
+    display: flex;
+    width: 1600px;
+    height: 1000px;
+    position: relative;
+    background-color: #ccc;
+    flex-direction:row;
+    justify-content: center;
+    margin-top: 800px;
+    
+    
+
+  }
+  @media screen and (max-width: 768px) { /* Altere o valor conforme necessário para a resolução do celular */
+    .appointment-boxes-barber {
+      flex-direction: column; /* Altera a direção do flex para coluna */
+    }
+  }
+  .appointment-box-barber{
+    max-width: 50%;
+    position: relative;
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    flex: 1;
+    
+    background-color: #e74c3c;
+    
+    
+
+  }
+  .calendar {
+    position: absolute;
+    left: 30%;
+    
+  }
+  .horarios {
+    position: relative;
+    top:600px;
+  }
+  .appointment-box-desktop{
+    max-width: 50%;
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    
+
+  }
+  .receita {
+    width: 100px;
+    height: 300px;
+    position: relative;
+    background-color: #64e61a;
+    margin-top: 200px;
+  }
+  .clientes {
+    width: 100px;
+    height: 300px;
+    position: relative;
+    background-color: #e61aa9;
+    margin-top: 200px;
+  }
+  
   .appointment-box {
     
     border: 1px solid #ccc;
