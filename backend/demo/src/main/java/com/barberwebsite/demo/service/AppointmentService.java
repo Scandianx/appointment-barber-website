@@ -117,12 +117,10 @@ public class AppointmentService {
     }
 
     public List<String> consultAllAppointments(@RequestBody ConsultAppointmentDTO data) {
-        log.info(data.data().toString()+ "Essa foi a data selecionada");
+        
         Barber barber = usuarioRepository.findBarberById(data.idBarber());
         List<Appointment> barberAppointments = obterAgendamentosDoDia(barber.getAppointments(), data.data());
-        for(Appointment ap: barberAppointments) {
-            log.info(ap.getDate().toString());
-        }
+        
         
         List<String> allHours = Arrays.asList(
                 "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",

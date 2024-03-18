@@ -4,6 +4,7 @@ const BoxHorariosDisponiveis = ({ currentDate }) => {
   const [loading, setLoading] = useState(true);
   const [situacaoHorarios, SetSituacaoHorarios] = useState([]);
   const [currentHour, setCurrentHour] = useState('');
+  const [currentFormatedDate, setCurrentFormatedDate] = useState(currentDate.toISOString());
   
   
   const availableHours = [
@@ -17,11 +18,28 @@ const BoxHorariosDisponiveis = ({ currentDate }) => {
     
     // Faça algo quando um horário for clicado, se necessário
   };
-  const handleCancelarAgendamento = (time) => {
+  const handleBloquearAgendamento = () => {
+    // Verifica se a hora atual foi selecionada
+    if (!currentHour) {
+      console.error('Selecione uma hora para bloquear.');
+      return;
+    }
+    // Remove 3 horas do fuso horário
     
-    
+    // Cria uma nova data combinando a data formatada atual com a hora selecionada
+    const [hora, minuto] = currentHour.split(':');
+    const dataHoraSelecionada = new Date(currentFormatedDate);
+    dataHoraSelecionada.setHours(parseInt(hora, 10));
+    dataHoraSelecionada.setMinutes(parseInt(minuto, 10));
+    // Remove 3 horas do fuso horário
+    dataHoraSelecionada.setHours(dataHoraSelecionada.getHours() - 3);
+    // Formata a data e hora para o formato desejado para a requisição
+    const dataHoraFormatada = dataHoraSelecionada.toISOString(); // Você pode ajustar o formato conforme necessário
+  
+    // Aqui você pode enviar a requisição de bloqueio com dataHoraFormatada
+    console.log('Data e hora formatada para bloqueio:', dataHoraFormatada);
   };
-  const handleDesbloquearDia = (time) => {
+  const handleCancelarAgendamento = (time) => {
     setCurrentHour(time);
     // Faça algo quando um horário for clicado, se necessário
   };
@@ -30,7 +48,7 @@ const BoxHorariosDisponiveis = ({ currentDate }) => {
     const fetchData = async () => {
       try {
         let formattedDate;
-        
+        setCurrentFormatedDate(currentDate.toISOString());
         
         
         
@@ -60,8 +78,8 @@ const BoxHorariosDisponiveis = ({ currentDate }) => {
           const data = await response.json();
           SetSituacaoHorarios(data);
           
-          console.log(formattedDate, "----");
           
+          console.log(currentDate, "testando parametro de data");
 
           
         } else {
@@ -134,7 +152,7 @@ const BoxHorariosDisponiveis = ({ currentDate }) => {
     </div>
     <div className='botoes'> 
             <button onClick={() => handleCancelarAgendamento()}>Desmacar horário</button>
-            <button>Desmacar horário2</button>
+            <button onClick={() => handleBloquearAgendamento()}>Bloquear Agendamento</button>
             <button>Desmacar horário</button>
     </div>
     </div>
