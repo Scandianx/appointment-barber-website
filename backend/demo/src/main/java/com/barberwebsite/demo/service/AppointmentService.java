@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.barberwebsite.demo.dtos.AppointmentBlockDTO;
 import com.barberwebsite.demo.dtos.AppointmentDTO;
 import com.barberwebsite.demo.dtos.AppointmentResponseDTO;
 import com.barberwebsite.demo.dtos.ConsultAppointmentDTO;
 import com.barberwebsite.demo.model.Appointment;
+import com.barberwebsite.demo.model.AppointmentType;
 import com.barberwebsite.demo.model.Barber;
 import com.barberwebsite.demo.model.Client;
 import com.barberwebsite.demo.repository.AppointmentRepository;
@@ -210,17 +212,28 @@ public class AppointmentService {
         return disponibleHours;
 
     }
-    public String deleteAppointmentByDate (HttpServletRequest request, @PathVariable Date date) {
+    public String deleteAppointmentByDate (HttpServletRequest request, AppointmentBlockDTO data) {
          var barberToken= request.getHeader("Authorization");
          if(barberToken != null && barberToken.startsWith("Bearer ")) {
             String token= barberToken.substring(7);
-            log.info(token);
+            
             var username= tokenService.validateToken(token);
-            Barber barber = usuarioRepository.findBarberById(1);
+            Barber barber = usuarioRepository.findBarberByUsername(username);
+            
             List<Appointment> barberAppointments = barber.getAppointments();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(data.date());
+
+            // Adicionar 3 horas à data
+            calendar.add(Calendar.HOUR_OF_DAY, 3);
+
+            // Obter a nova data após adicionar 3 horas
+            Date novaData = calendar.getTime();
             for (Appointment ap: barberAppointments) {
-                if(isMesmoDia(ap.getDate(), date) && isMesmaHora2(date, ap.getDate())) {
+                if(isMesmoDia(ap.getDate(), novaData) && isMesmaHora2(novaData, ap.getDate())) {
                     deleteAppointment(ap.getId());
+                    
+                    log.info(novaData.toString() + "desmarcar horário concluido" + "por um " + ap.getBarber() + ap.getClient());
                     return "Horário desmarcado com sucesso";
                 }
             }
@@ -258,7 +271,46 @@ public class AppointmentService {
         }
         return clientAppointmentsDTO;
     }
+    public String blockAppointment(HttpServletRequest request, AppointmentBlockDTO data) {
+        var barberToken= request.getHeader("Authorization");
+         if(barberToken != null && barberToken.startsWith("Bearer ")) {
+            String token= barberToken.substring(7);
+            
+            var username= tokenService.validateToken(token);
+            Barber barber = usuarioRepository.findBarberById(1);
+            bloquearHorario(data.date(), barber);
+            return "Horario desmarcado";
+            }
+         
+         return "Horario não desmarcado";
 
+        
+    }
+    private void bloquearHorario (Date date, Barber barber) {
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTime(date);
+
+    // Adicionar 3 horas à data
+    calendar.add(Calendar.HOUR_OF_DAY, 3);
+
+    // Obter a nova data após adicionar 3 horas
+    Date novaData = calendar.getTime();
+   Client cliente = usuarioRepository.findClientById(52);
+    Appointment appointment = new Appointment();
+    appointment.setAppointmentType(AppointmentType.LITTLE_HAIRCUT);
+    appointment.setDate(novaData);
+    appointment.setComments("Horário bloqueado");
+    appointment.setBarber(barber);
+    appointment.setClient(cliente);
+    List<Appointment> barberAppointments = barber.getAppointments();
+    List<Appointment> clientAppointments = cliente.getAppointments();
+    clientAppointments.add(appointment);
+    barberAppointments.add(appointment);
+    usuarioRepository.save(barber);
+    usuarioRepository.save(cliente);
+    appointmentRepository.save(appointment);
+    log.info("O barbeiro: " + barber.getName() + " de id: " + barber.getId() + "Se bloqueou um horario no sistema" + appointment.getDate().toString());
+    }
     public List<Appointment> obterAgendamentosDoDia(List<Appointment> todosAgendamentos, Date dataDesejada) {
         return todosAgendamentos.stream()
                 .filter(appointment -> isMesmoDia(appointment.getDate(), dataDesejada))

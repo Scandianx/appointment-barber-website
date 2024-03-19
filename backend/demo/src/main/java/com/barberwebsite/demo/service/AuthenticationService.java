@@ -35,11 +35,11 @@ public class AuthenticationService {
         var auth = this.authenticationManager.authenticate(usernamePassword);
         if (repository.findByUsername(data.username()).getClass() == Barber.class) {
             var token = tokenService.generateToken((Barber) auth.getPrincipal());
-            log.info("O usuario {} se registrou no sistema", data.username());
+            log.info("O usuario {} se logou no sistema", data.username());
             return ResponseEntity.ok(new LoginResponseDTO(token));
         } else {
             var token = tokenService.generateToken((Client) auth.getPrincipal());
-            log.info("O usuario {} se registrou no sistema", data.username());
+            log.info("O usuario {} se logou no sistema", data.username());
             return ResponseEntity.ok(new LoginResponseDTO(token));
         }
 

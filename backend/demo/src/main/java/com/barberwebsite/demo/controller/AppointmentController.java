@@ -1,5 +1,6 @@
 package com.barberwebsite.demo.controller;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.barberwebsite.demo.dtos.AppointmentBlockDTO;
 import com.barberwebsite.demo.dtos.AppointmentDTO;
 import com.barberwebsite.demo.dtos.AppointmentResponseDTO;
 import com.barberwebsite.demo.dtos.ConsultAppointmentDTO;
@@ -38,32 +40,20 @@ public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
 
-    @DeleteMapping("/data/{date}")
-    public String deleteAppointmentByDate (HttpServletRequest request, @PathVariable String date) {
-        try {
-            // Remove a parte dos milissegundos e o offset de fuso horário da string de data
-            String trimmedDate = date.split("\\.")[0]; // Remove os milissegundos
-            // Remove o offset de fuso horário, se presente
-            trimmedDate = trimmedDate.replaceAll("\\+.*$", "");
-    
-            // Faz o parse da string para LocalDateTime
-            LocalDateTime dateTime = LocalDateTime.parse(trimmedDate);
-    
-            // Converte LocalDateTime para Date
-            Date date2 = Date.from(dateTime.toInstant(ZoneOffset.UTC));
-            log.info(date2.toString());
-    
-            return appointmentService.deleteAppointmentByDate(request, date2);
-        } catch (DateTimeParseException e) {
-            log.error("Formato de data inválido: {}", date);
-            // Trate o erro de formato inválido da data aqui
-            return "Erro: Formato de data inválido";
-        }
+    @PutMapping()
+    public String deleteAppointmentByDate (HttpServletRequest request, @RequestBody AppointmentBlockDTO data) {
+        
+            return appointmentService.deleteAppointmentByDate(request, data);
+        
     }
     @PostMapping()
     public ResponseEntity<Appointment> newAppointment(@RequestBody AppointmentDTO appointmentDTO) {
         Appointment appointment = appointmentService.newAppointment(appointmentDTO);
         return ResponseEntity.ok(appointment);
+    }
+    @PostMapping("/blockappointment")
+    public String blockAppointment(HttpServletRequest request, @RequestBody AppointmentBlockDTO data) {
+        return appointmentService.blockAppointment(request, data);
     }
 
     @DeleteMapping("/{appointmentId}")
