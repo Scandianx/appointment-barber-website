@@ -256,10 +256,10 @@ const BoxHorariosDisponiveis = ({ currentDate }) => {
         )}
       </div>
     </div>
-    <div className='botoes'> 
-            <button onClick={() => handleCancelarAgendamento()}>Desmacar horário</button>
-            <button onClick={() => handleBloquearAgendamento()}>Bloquear Agendamento</button>
-            <button onClick={() => handleCancelarAgendamento()}>Desbloquear Agendamento</button>
+    <div className='botoes2'> 
+            <button  className='botao1' onClick={() => handleCancelarAgendamento()}>Desmacar horário</button>
+            <button  className='botao2' onClick={() => handleBloquearAgendamento()}>Bloquear Agendamento</button>
+            <button  className='botao3' onClick={() => handleCancelarAgendamento()}>Desbloquear Agendamento</button>
     </div>
     </div>
   );

@@ -193,7 +193,7 @@ function BarberBookingApp () {
   const [currentBarber, setCurrentBarber] = useState('');
   const [currentLocation, setCurrentLocation] = useState('');
   const [currentService, setCurrentService] = useState('');
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
   const handleLocation = (location) => {
     setCurrentLocation(location);
   };

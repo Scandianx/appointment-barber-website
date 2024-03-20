@@ -26,7 +26,7 @@ const Appointments = ({isAdmin}) => {
   const[currentDate, setCurrentDate] = useState(data)
   const handleDate = (date) => {
     setCurrentDate(date);
-    console.log(date, "--")
+    
     
   };
   // Função para obter os agendamentos
@@ -102,7 +102,7 @@ const Appointments = ({isAdmin}) => {
       ) : (
         <div className='appointment-boxes-barber'> 
            <div className='appointment-box-barber'>
-            <div className='calendar'>
+            <div className='calendar2'>
             <Calendar getDate={handleDate}> </Calendar>
             </div>
             <div className='horarios'>
@@ -111,11 +111,15 @@ const Appointments = ({isAdmin}) => {
             
            </div>
            <div className='appointment-box-desktop'> 
-           <div className='receita'>  
-            {receita}
+           <div className='receita'>
+            <div className='faturamento'> <h4>Faturamento bruto:</h4>
+            </div>   
+            <p> R$ {receita}</p>
            </div>
-           <div className='clientes'>  
-            {clientes}
+           <div className='clientes'>
+           <div className='atendimentos'> <h4>Atendimentos diários:</h4>
+            </div>     
+           <p>{clientes}</p>
            </div>
            </div>
         </div>
