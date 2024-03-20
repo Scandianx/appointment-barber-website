@@ -188,12 +188,12 @@ if (selectedBarber === 'Danilo') {
 };
 
 // Componente principal
-function BarberBookingApp () {
+function BarberBookingApp ({isAdmin}) {
   const [currentStep, setCurrentStep] = useState('location');
   const [currentBarber, setCurrentBarber] = useState('');
   const [currentLocation, setCurrentLocation] = useState('');
   const [currentService, setCurrentService] = useState('');
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin2, setIsAdmin2] = useState(isAdmin);
   const handleLocation = (location) => {
     setCurrentLocation(location);
   };
@@ -240,7 +240,7 @@ function BarberBookingApp () {
       {currentStep === 'barber' && <ChooseBarber onNext={handleNextStep} barberChoosed={handleBarber} selectedLocation={currentLocation}/>}
       {currentStep === 'service' && <ChooseService onNext={handleNextStep} serviceChoosed={handleService}/>}
       {currentStep === 'date' && <ChooseDate selectedBarber={currentBarber} selectedService={currentService} changeNext={handleFinal}/>}
-      {currentStep === 'appointments' && <Appointments isAdmin={isAdmin}/>}
+      {currentStep === 'appointments' && <Appointments isAdmin2={isAdmin2}/>}
       
       
     </div>

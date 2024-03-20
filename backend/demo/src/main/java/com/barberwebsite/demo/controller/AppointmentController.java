@@ -1,12 +1,5 @@
 package com.barberwebsite.demo.controller;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +22,11 @@ import com.barberwebsite.demo.model.Appointment;
 import com.barberwebsite.demo.service.AppointmentService;
 
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.extern.slf4j.Slf4j;
+
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("agendamento")
-@Slf4j
 public class AppointmentController {
 
     @Autowired

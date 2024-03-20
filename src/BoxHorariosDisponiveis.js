@@ -210,12 +210,12 @@ const BoxHorariosDisponiveis = ({ currentDate }) => {
         ) : (
             availableHours.map((time, index) => {
                 let situacaoHorario;
-                if (situacaoHorarios[index] === 'livre') {
-                  situacaoHorario = 'livre';
+                if (situacaoHorarios[index] === 'bloqueado') {
+                  situacaoHorario = 'bloqueado';
                 } else if (situacaoHorarios[index] === 'ocupado') {
                   situacaoHorario = 'ocupado';
                 } else {
-                  situacaoHorario = 'bloqueado';
+                  situacaoHorario = 'livre';
                 }
                 
               

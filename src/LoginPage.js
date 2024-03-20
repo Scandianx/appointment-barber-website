@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './LoginPage.css';
 import logo from './imgs/logo.png';
-const LoginPage = ({ onLoginSuccess }) => {
+const LoginPage = ({ onLoginSuccess, isAdmin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,6 +14,10 @@ const LoginPage = ({ onLoginSuccess }) => {
   };
 
   const handleLogin = () => {
+    if (username==="danilo") {
+      isAdmin();
+    }
+    
     // Substitua a URL da API pelo seu endpoint real
     const apiUrl = "http://localhost:8083/auth/login";
 

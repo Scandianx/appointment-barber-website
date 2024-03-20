@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   useEffect(() => {
     document.title = 'Caio Barbearia';
   }, []);
@@ -28,6 +29,10 @@ const App = () => {
       },
     });
   };
+  const handleAdmin = () => {
+    setIsAdmin(true);
+    console.log(true)
+  };
 
  
   return (
@@ -35,9 +40,9 @@ const App = () => {
       <ToastContainer />
       {authenticated ? (
         
-        <BarberBookingApp />
+        <BarberBookingApp isAdmin={isAdmin}/>
       ) : (
-        <LoginPage onLoginSuccess={handleLoginSuccess} />
+        <LoginPage onLoginSuccess={handleLoginSuccess} isAdmin={handleAdmin}/>
       )}
     </div>
   );

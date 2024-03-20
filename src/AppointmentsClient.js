@@ -8,7 +8,7 @@ import Calendar from './Calendar';
 import BoxHorariosDisponiveis from './BoxHorariosDisponiveis';
 
 
-const Appointments = ({isAdmin}) => {
+const Appointments = ({isAdmin2}) => {
   const serviceTranslations = {
     'HAIR_CUT': 'Corte de cabelo',
     'BEARD': 'Barba',
@@ -45,6 +45,7 @@ const Appointments = ({isAdmin}) => {
 
       // Atualizar o estado com os agendamentos obtidos
       setAppointments(response.data);
+      console.log(response.data);
       
     } catch (error) {
       console.error('Erro ao obter agendamentos:', error);
@@ -78,7 +79,7 @@ const Appointments = ({isAdmin}) => {
   return (
     <div className='appointments'>
       
-      {!isAdmin ? (
+      {!isAdmin2 ? (
         appointments.length > 0 ? (
           <div className='appointment-boxes'>
             <h2>Meus Agendamentos</h2>

@@ -129,22 +129,16 @@ public class AppointmentService {
                 "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
                 "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00");
         boolean isCurrentDay = isMesmoDia(data.data(), setarFuso(new Date()));
-        List<String> availableHours = allHours.stream()
-        .filter(hour -> {
-            if (isCurrentDay) { // Verifica se o dia escolhido é o dia atual
-                LocalTime currentTimeMinusThreeHours = LocalTime.now();
-                LocalTime currentHour = LocalTime.parse(hour);
+        LocalTime currentTimeMinusThreeHours = LocalTime.now();
                 
-                return currentHour.isAfter(currentTimeMinusThreeHours);
-                
-            } else {
-                
-                return true; // Retorna true para todos os horários se o dia escolhido não for o dia atual
-            }
-        })
-        .collect(Collectors.toList());
         
-        List<String> appointmentStates = availableHours.stream().map(hour -> {
+
+                
+                
+        
+        List<String> appointmentStates = allHours.stream().map(hour -> {
+            LocalTime currentHour = LocalTime.parse(hour);
+            if (!isCurrentDay || currentHour.isAfter(currentTimeMinusThreeHours)) {
             if (barberAppointments.stream().anyMatch(appointment -> isMesmaHora(appointment.getDate(), hour))) {
                 if (barberAppointments.stream().anyMatch(appointment -> isMesmaHoraBlock(appointment, hour))) {
                     return "bloqueado";
@@ -157,6 +151,10 @@ public class AppointmentService {
             else {
                 return "livre";
             }
+        }
+        else {
+            return "bloqueado";
+        }
         }).collect(Collectors.toList());
         return appointmentStates;
 
@@ -223,17 +221,19 @@ public class AppointmentService {
             List<Appointment> barberAppointments = barber.getAppointments();
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(data.date());
-
+            Calendar calendar2 = Calendar.getInstance();
             // Adicionar 3 horas à data
             calendar.add(Calendar.HOUR_OF_DAY, 3);
 
             // Obter a nova data após adicionar 3 horas
             Date novaData = calendar.getTime();
             for (Appointment ap: barberAppointments) {
-                if(isMesmoDia(ap.getDate(), novaData) && isMesmaHora2(novaData, ap.getDate())) {
+                calendar2.setTime(ap.getDate());
+                Date novaData2 = calendar2.getTime();
+                if(isMesmoDia(novaData2, novaData) && isMesmaHora2(novaData, novaData2)) {  
                     deleteAppointment(ap.getId());
                     
-                    log.info(novaData.toString() + "desmarcar horário concluido" + "por um " + ap.getBarber() + ap.getClient());
+                    log.info(novaData.toString() + "desmarcar horario concluido " + "por " + ap.getBarber().getName() +  "No agendamento de" + ap.getClient().getName());
                     return "Horário desmarcado com sucesso";
                 }
             }
@@ -277,7 +277,7 @@ public class AppointmentService {
             String token= barberToken.substring(7);
             
             var username= tokenService.validateToken(token);
-            Barber barber = usuarioRepository.findBarberById(1);
+            Barber barber = usuarioRepository.findBarberByUsername(username);
             bloquearHorario(data.date(), barber);
             return "Horario desmarcado";
             }
@@ -364,11 +364,12 @@ public class AppointmentService {
         java.util.Calendar calendar2 = java.util.Calendar.getInstance();
         calendar2.setTime(data2);
 
-        int hora2 = calendar1.get(java.util.Calendar.HOUR_OF_DAY);
-        int minuto2 = calendar1.get(java.util.Calendar.MINUTE);
+        int hora2 = calendar2.get(java.util.Calendar.HOUR_OF_DAY);
+        int minuto2 = calendar2.get(java.util.Calendar.MINUTE);
 
         return hora1 == hora2 && minuto1 == minuto2;
     }
+    
 
     
 
